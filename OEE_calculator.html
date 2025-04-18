@@ -1,0 +1,1000 @@
+<!-- https://codepen.io/wikyware-net/pen/qBbopEG
+https://codepen.io/ejsado/pen/yLNMPG -->
+
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto);
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    :root {
+        --primary-color: #88b04b;
+        --white: #fff;
+        --black: #000;
+        --gray-50: #f9f9f9;
+        --gray-100: #ececec;
+        --gray-200: #e3e3e3;
+        --gray-300: #cdcdcd;
+        --gray-400: #b4b4b4;
+        --gray-500: #9b9b9b;
+        --gray-600: #676767;
+        --gray-700: #424242;
+        --gray-750: #2f2f2f;
+        --gray-800: #212121;
+        --gray-900: #171717;
+        --gray-950: #0d0d0d;
+        --red-500: #e02e2a;
+        --red-700: #911e1b;
+        --brand-purple: #ab68ff;
+        --yellow-900: #4d3b00;
+    }
+
+    body {
+        background: var(--gray-900);
+        color: white;
+        font-family: Roboto, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .text-xs {
+        font-size: 0.75rem;
+        /* 12px */
+    }
+
+    .text-sm {
+        font-size: 0.875rem;
+        /* 14px */
+    }
+
+    .text-base {
+        font-size: 1rem;
+        /* 16px */
+    }
+
+    .text-lg {
+        font-size: 1.125rem;
+        /* 18px */
+    }
+
+    .text-xl {
+        font-size: 1.25rem;
+        /* 20px */
+    }
+
+    .text-2xl {
+        font-size: 1.5rem;
+        /* 24px */
+    }
+
+    .text-3xl {
+        font-size: 1.875rem;
+        /* 30px */
+    }
+
+    .text-4xl {
+        font-size: 2.25rem;
+        /* 36px */
+    }
+
+    .text-5xl {
+        font-size: 3rem;
+        /* 48px */
+    }
+
+    .text-6xl {
+        font-size: 3.75rem;
+        /* 60px */
+    }
+
+    .text-7xl {
+        font-size: 4.5rem;
+        /* 72px */
+    }
+
+    .text-8xl {
+        font-size: 6rem;
+        /* 96px */
+    }
+
+    .clr-primary {
+        color: var(--primary-color);
+    }
+
+    .clr-primary {
+        color: var(--primary-color);
+    }
+
+    .flex {
+        display: flex;
+    }
+
+    .flex-col {
+        flex-direction: column;
+    }
+
+    .flex-1 {
+        flex: 1;
+    }
+
+    .grid-50-50-col {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 1fr;
+    }
+
+    .grid-1fr-1fr-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    /* result */
+    .section-wrapper {
+        width: 100%;
+        min-height: 500px;
+        max-width: 1200px;
+        margin-right: auto;
+        margin-left: auto;
+        gap: 150px;
+        overflow: hidden;
+    }
+
+    #chart {
+        /* max-width: 650px; */
+        /* margin: 35px auto; */
+    }
+
+    /* Form */
+
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+    .multi-step-wrapper {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form__container {
+        /* background: var(--gray-900); */
+        text-align: center;
+        display: flex;
+        gap: 30px;
+        flex: 1;
+        border-radius: 12px;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 0;
+        color: white;
+        /* border: 1px solid #e6e9eb; */
+        /* -webkit-box-shadow: 0 12px 24px 0 rgba(0, 0, 0, .06);
+        -moz-box-shadow: 0 12px 24px 0 rgba(0, 0, 0, .06);
+        -o-box-shadow: 0 12px 24px 0 rgba(0, 0, 0, .06);
+        box-shadow: 0 12px 24px 0 rgba(0, 0, 0, .06); */
+    }
+
+    .form-wrapper {
+        margin: auto 0;
+        min-width: 400px;
+    }
+
+    .form__container header {
+        font-size: 35px;
+        font-weight: 600;
+        margin: 0 0 30px 0;
+    }
+
+    .form-outer {
+        flex: 1;
+    }
+
+    .form-outer form .page {
+        flex-direction: row;
+        min-width: 400px;
+        display: none;
+        transition: display 0.3s ease-in-out;
+        gap: 150px;
+    }
+
+    .form-outer form .page .title {
+        text-align: left;
+        font-size: 25px;
+        font-weight: 500;
+    }
+
+    .form-outer form .page .field {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0;
+    }
+
+    .form-outer form .page .field.btns {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    form .page .field .label {
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    form .page .field input {
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+        padding-left: 15px;
+        font-size: 18px;
+    }
+
+    form .page .field select {
+        width: 100%;
+        padding-left: 10px;
+        font-size: 17px;
+        font-weight: 500;
+    }
+
+    form .page .field button {
+        border: none;
+        background: var(--primary-color);
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        padding: 7px 15px;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: 0.5s ease;
+    }
+
+    form .page .field button:hover {
+        background: var(--gray-500);
+    }
+
+    form .page .btns button.next {
+        margin-left: 3px;
+    }
+
+    .form__container .progress-bar {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        /* justify-content: center; */
+        /* align-items: center; */
+    }
+
+    .progress-bar .bullet {
+        font-size: 17px;
+    }
+
+    .progress-bar .bullet.active {
+        color: var(--primary-color);
+    }
+
+    .progress-bar .flow-line {
+        height: 44px;
+        width: 3px;
+        background: white;
+        margin: auto;
+    }
+
+    .progress-bar .flow-line.active {
+        background: var(--primary-color);
+        animation: animate 0.3s linear forwards;
+    }
+
+    @keyframes animate {
+        100% {
+            transform: scaleX(1);
+        }
+    }
+
+
+    :root {
+        --slider-track-color: #0073aa;
+        --slider-thumb-color: #ffffff;
+        --slider-thumb-border: #0073aa;
+    }
+
+    .range-wrapper {
+        max-width: 400px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        font-size: 1rem;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .input-group {
+        display: block;
+    }
+
+    .range-group {
+        display: flex;
+        justify-content: space-between;
+        color: var(--gray-500);
+    }
+
+    .range-group>div {
+        color: var(--gray-500);
+    }
+
+    input[type="range"] {
+        -webkit-appearance: none;
+        height: 6px;
+        background: #ddd;
+        border-radius: 5px;
+        outline: none;
+        cursor: pointer;
+        margin: 20px 0;
+        width: 100%;
+        padding: 0 !important;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        background: var(--slider-thumb-color);
+        border: 1px solid var(--slider-thumb-border);
+        border-radius: 50%;
+        cursor: pointer;
+
+        border: 1px solid #e6e9eb;
+        -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, .3);
+        -moz-box-shadow: 0 0 7px rgba(0, 0, 0, .3);
+        -o-box-shadow: 0 0 7px rgba(0, 0, 0, .3);
+        box-shadow: 0 0 7px rgba(0, 0, 0, .3);
+    }
+
+    input[type="number"] {
+        padding: 5px 10px;
+        max-width: 100px;
+        font-size: 1rem;
+        border-color: var(--slider-thumb-border);
+        border: none !important;
+        background: #88b04b33;
+        color: #88b04b;
+    }
+
+    .result-container {
+        overflow: hidden;
+        /* width: 100%; */
+        margin-top: auto;
+        margin-bottom: auto;
+        display: flex;
+    }
+
+    .result-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        flex: 1;
+        text-align: left;
+    }
+
+    .result-wrapper .result {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sub-result {
+        display: flex;
+        flex: 1;
+        gap: 30px;
+    }
+
+    .result-wrapper .result-value {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .result .result-title {
+        color: var(--gray-400);
+    }
+
+    .chart-column {
+        width: 30px;
+        /* background: #ff000033; */
+        /* height: 100%; */
+        min-height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        border-radius: 4px;
+    }
+
+    .column-fill {
+        width: 100%;
+        background: red;
+        border-radius: 4px;
+    }
+
+    .chart-legend {
+        height: 10px;
+        width: 10px;
+        margin: 5px;
+        background-color: red;
+        border-radius: 50%;
+    }
+
+    .chart-values {
+        display: flex;
+        align-items: center;
+        color: white;
+    }
+</style>
+<div class="section-wrapper">
+    <div class="multi-step-wrapper">
+        <div class="form__container">
+            <div class="progress-bar">
+                <div class="bullet active">
+                    Basic Details
+                </div>
+                <div class="flow-line active"></div>
+                <div class="bullet">
+                    Availibility
+                </div>
+                <div class="flow-line"></div>
+                <div class="bullet">
+                    Performance
+                </div>
+                <div class="flow-line"></div>
+                <div class="bullet">
+                    Quality
+                </div>
+                <div class="flow-line"></div>
+                <div class="bullet">
+                    OEE
+                </div>
+            </div>
+            <div class="form-outer">
+                <form action="#">
+                    <div class="page">
+                        <div class="form-wrapper">
+                            <div class="field" id="total_machines"></div>
+                            <div class="field" id="MHR_rate"></div>
+                            <div class="field" id="avg_machine_cost"></div>
+
+                            <div class="field">
+                                <button class="firstNext next">Next</button>
+                            </div>
+                        </div>
+                        <div class="result-container">
+                            <div class="result-page result-wrapper">
+                                <div class="result">
+                                    <div class="text-lg clr-primary">Basic Details</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page">
+                        <div class="form-wrapper">
+                            <div class="field" id="total_shift_time"></div>
+                            <div class="field" id="total_shifts"></div>
+                            <div class="field" id="planned_downtime"></div>
+                            <div class="field" id="unplanned_downtime"></div>
+
+                            <div class="field btns">
+                                <button class="prev">Previous</button>
+                                <button class="next">Next</button>
+                            </div>
+                        </div>
+                        <div class="result-container">
+                            <div class="result-page result-wrapper">
+                                <div class="result clr-primary" id="val_availibility"></div>
+                                <div class="sub-result">
+                                    <div class="result" id="val_planned_production_time"></div>
+                                    <div class="result" id="val_available_time"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page">
+                        <div class="form-wrapper">
+                            <div class="field" id="std_cycle_time"></div>
+                            <div class="field" id="loading_time"></div>
+                            <div class="field" id="total_production_qty"></div>
+                            <div class="field" id="total_target_qty"></div>
+
+                            <div class="field btns">
+                                <button class="prev">Previous</button>
+                                <button class="next">Next</button>
+                            </div>
+                        </div>
+                        <div class="result-container">
+                            <div class="result-page result-wrapper">
+                                <div class="result clr-primary" id="val_performance">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page">
+                        <div class="form-wrapper">
+                            <div class="field" id="total_rejection_qty"></div>
+                            <div class="field" id="net_qty"></div>
+
+                            <div class="field btns">
+                                <button class="prev">Previous</button>
+                                <button class="next">Next</button>
+                                <button class="submit">Submit</button>
+                            </div>
+                        </div>
+                        <div class="result-container">
+                            <div class="result-page result-wrapper">
+                                <div class="result clr-primary" id="val_quality">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page">
+                        <div class="form-wrapper">
+                            <div class="field">
+                                Done
+                            </div>
+                        </div>
+                        <div class="result-container">
+                            <div class="result-page result-wrapper">
+                                <div class="result clr-primary" id="val_oee">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script>
+    init();
+
+    function init() {
+
+        // initial values
+        let oeeFormValues = {
+            // Basic Details	            
+            total_machines: 10,
+            MHR_rate: 500,
+            avg_machine_cost: 20000,
+
+            // Availibility 
+            total_shift_time: 1440,
+            total_shifts: 2,
+            planned_downtime: 60,
+            unplanned_downtime: 250,
+            planned_production_time: 0,
+            available_time: 0,
+            availibility: 0,
+
+            // Performance 
+            std_cycle_time: 10,
+            loading_time: 5,
+            total_production_qty: 500,
+            total_target_qty: 600,
+            performance: 0,
+
+            // Quality
+            total_rejection_qty: 20,
+            net_qty: 480,
+            quality: 0,
+
+            // OEE
+            oee: 0,
+
+        };
+
+        initForm();
+        // showResult();
+
+        function initForm() {
+
+            // Page 1
+            rangeAndTextInput(
+                'Total Numer of Machines in your shopflour',
+                'total_machines',
+                { min: 1, max: 500, value: oeeFormValues.total_machines }
+            );
+            rangeAndTextInput(
+                'MHR(Machine Hour Rate) $',
+                'MHR_rate',
+                { min: 1, max: 10000, value: oeeFormValues.MHR_rate }
+            );
+            rangeAndTextInput(
+                'Average Machine Cost $',
+                'avg_machine_cost',
+                { min: 1, max: 100000, value: oeeFormValues.avg_machine_cost }
+            );
+
+            // Page 2
+            rangeAndTextInput(
+                'Total /Shift Time',
+                'total_shift_time',
+                { min: 0, max: 1440, value: oeeFormValues.total_shift_time }
+            );
+            rangeAndTextInput(
+                'Shifts',
+                'total_shifts',
+                { min: 1, max: 3, value: oeeFormValues.total_shifts }
+            );
+            rangeAndTextInput(
+                'Planned Downtime (mins)',
+                'planned_downtime',
+                { min: 0, max: 1440, value: oeeFormValues.planned_downtime }
+            );
+            rangeAndTextInput(
+                'Unplanned Downtime (mins)',
+                'unplanned_downtime',
+                { min: 0, max: 1440, value: oeeFormValues.unplanned_downtime }
+            );
+            uptplannedProductionTime();
+            uptAvailableTime();
+            uptAvailibility();
+
+
+            // Page 3
+            rangeAndTextInput(
+                'Std Cycle Time (Min)',
+                'std_cycle_time',
+                { min: 1, max: 1440, value: oeeFormValues.std_cycle_time }
+            );
+            rangeAndTextInput(
+                'Loading Time (Min)',
+                'loading_time',
+                { min: 1, max: 1440, value: oeeFormValues.loading_time }
+            );
+            rangeAndTextInput(
+                'Total Production Qty',
+                'total_production_qty',
+                { min: 1, max: 10000, value: oeeFormValues.total_production_qty }
+            );
+            rangeAndTextInput(
+                'Target Production Qty',
+                'total_target_qty',
+                { min: 1, max: 10000, value: oeeFormValues.total_target_qty }
+            );
+            uptPerformance();
+
+            // Page 4
+            rangeAndTextInput(
+                'Rejection Qty',
+                'total_rejection_qty',
+                { min: 0, max: 10000, value: oeeFormValues.total_rejection_qty }
+            );
+            // rangeAndTextInput(
+            //     'Net Production Qty',
+            //     'net_qty',
+            //     { min: 1, max: 10000, value: oeeFormValues.net_qty }
+            // );
+            uptQuality();
+
+            // Page 5
+            uptOEE();
+
+            // Actions
+            const formOuter = document.querySelector(".form-outer");
+            const pages = document.querySelectorAll(".form-outer .page");
+            const nextBtns = document.querySelectorAll(".next");
+            const prevBtns = document.querySelectorAll(".prev");
+            const bullets = document.querySelectorAll(".progress-bar .bullet");
+            const flowLines = document.querySelectorAll(".progress-bar .flow-line");
+
+            let currentPage = 0;
+
+            function showPage(index) {
+                pages.forEach((page, i) => {
+                    page.style.display = i === index ? "flex" : "none";
+                });
+
+                updateProgressBar(index);
+            }
+
+            function updateProgressBar(index) {
+                bullets.forEach((bullet, i) => {
+                    bullet.classList.toggle("active", i <= index);
+                });
+                flowLines.forEach((line, i) => {
+                    line.classList.toggle("active", i < index);
+                });
+            }
+
+            nextBtns.forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    if (currentPage < pages.length - 1) {
+                        currentPage++;
+                        showPage(currentPage);
+                    }
+                });
+            });
+
+            prevBtns.forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    if (currentPage > 0) {
+                        currentPage--;
+                        showPage(currentPage);
+                    }
+                });
+            });
+
+            // Initial page setup
+            showPage(currentPage);
+
+            function rangeAndTextInput(label, id, inputOptions) {
+
+                let field = `
+                    <div class="label">
+                        <span>
+                            ${label}
+                        </span>
+                        <input type="number" id="${id}Input" min="${inputOptions.min}" value="${inputOptions.value}">
+                    </div>
+                    <div class="input-group">
+                        <input type="range" id="${id}Range" min="${inputOptions.min}" max="${inputOptions.max}" value="${inputOptions.value}">
+                        <div class="range-group">
+                            <div>
+                                ${inputOptions.min}
+                            </div>
+                            <div>
+                                ${inputOptions.max}
+                            </div>
+                        </div>
+                    </div>`;
+
+                document.getElementById(id).innerHTML = field;
+
+                const range = document.getElementById(id + "Input");
+                const number = document.getElementById(id + "Range");
+
+                range.addEventListener('input', () => {
+                    number.value = range.value;
+                    oeeFormValues[id] = range.value;
+                    updateData(id);
+                });
+
+                number.addEventListener('input', () => {
+                    const val = Math.max(inputOptions.min, Math.min(inputOptions.max, number.value));
+                    number.value = val;
+                    range.value = val;
+                    oeeFormValues[id] = val;
+                    updateData(id);
+                });
+            }
+
+            function updateData(updatedDataKey) {
+                // console.log("Result Updated!", updatedDataKey, oeeFormValues[updatedDataKey]);
+
+                let result_module = document.querySelector(".result-container");
+
+                if (updatedDataKey === "total_shift_time") {
+                    uptMaxShiftTime();
+                    uptplannedProductionTime();
+                    uptAvailableTime();
+                }
+                else if (updatedDataKey === "planned_downtime") {
+                    uptplannedProductionTime();
+                    uptAvailableTime();
+                }
+                else if (updatedDataKey === "unplanned_downtime") {
+                    uptAvailableTime();
+                }
+                else if (updatedDataKey === "total_production_qty") {
+                    uptNetQty();
+                    uptPerformance();
+                    uptQuality();
+                }
+                else if (updatedDataKey === "total_target_qty") {
+                    uptPerformance();
+                }
+                else if (updatedDataKey === "net_qty") {
+                    uptPerformance();
+                    uptQuality();
+                }
+                else if (updatedDataKey === "total_rejection_qty") {
+                    uptNetQty();
+                }
+
+            }
+
+            function uptMaxShiftTime() {
+                rangeAndTextInput(
+                    'Planned Downtime (mins)',
+                    'planned_downtime',
+                    { min: 0, max: oeeFormValues.total_shift_time, value: oeeFormValues.planned_downtime }
+                );
+                rangeAndTextInput(
+                    'Unplanned Downtime (mins)',
+                    'unplanned_downtime',
+                    { min: 0, max: oeeFormValues.total_shift_time, value: oeeFormValues.unplanned_downtime }
+                );
+                rangeAndTextInput(
+                    'Std Cycle Time (Min)',
+                    'std_cycle_time',
+                    { min: 1, max: oeeFormValues.total_shift_time, value: oeeFormValues.std_cycle_time }
+                );
+                rangeAndTextInput(
+                    'Loading Time (Min)',
+                    'loading_time',
+                    { min: 1, max: oeeFormValues.total_shift_time, value: oeeFormValues.loading_time }
+                );
+            }
+            function uptplannedProductionTime() {
+                let id = "planned_production_time";
+                oeeFormValues[id] = oeeFormValues.total_shift_time - oeeFormValues.planned_downtime;
+                console.log(oeeFormValues);
+                updateVal(id, "column", oeeFormValues[id], "mins", con_perc(oeeFormValues[id] / oeeFormValues.total_shift_time), "#ff8b00", "Planned Production Time");
+                // updateColumnVal(id, oeeFormValues[id] + "mins", "#ff8b00");
+
+                uptAvailibility();
+            }
+
+            function uptAvailableTime() {
+                let id = "available_time";
+                oeeFormValues[id] = oeeFormValues.total_shift_time - oeeFormValues.planned_downtime - oeeFormValues.unplanned_downtime;
+                updateVal(id, "column", oeeFormValues[id], "mins", con_perc(oeeFormValues[id] / oeeFormValues.total_shift_time), "#256eff", "Available / Operating Time");
+                // updateColumnVal(id, oeeFormValues[id] + "mins", "#256eff");
+                uptAvailibility();
+            }
+
+
+            function uptAvailibility() {
+                let id = "availibility";
+                oeeFormValues[id] = fixed(con_perc(oeeFormValues.available_time / oeeFormValues.planned_production_time), 1);
+                updateVal(id, "gauge", oeeFormValues[id], "%", oeeFormValues[id], "#88b04b", "Availibility");
+                // updateGauge(id, oeeFormValues[id], "mins", "#256eff");
+            }
+
+            function uptPerformance() {
+                let id = "performance";
+                oeeFormValues[id] = fixed(con_perc(oeeFormValues.total_production_qty / oeeFormValues.total_target_qty), 1);
+                updateVal(id, "gauge", oeeFormValues[id], "%", oeeFormValues[id], "#88b04b", "Performance");
+            }
+
+            function uptNetQty() {
+                let id = "net_qty";
+                oeeFormValues[id] = oeeFormValues.total_production_qty - oeeFormValues.total_rejection_qty;
+                updateData(id);
+            }
+
+            function uptQuality() {
+                let id = "quality";
+                oeeFormValues[id] = fixed(con_perc(oeeFormValues.net_qty / oeeFormValues.total_production_qty), 1);
+                // updateVal(id, oeeFormValues[id] + "%");
+                updateVal(id, "gauge", oeeFormValues[id], "%", oeeFormValues[id], "#88b04b", "Quality");
+            }
+
+            function uptOEE() {
+                let id = "oee";
+                oeeFormValues[id] = fixed(con_perc(oeeFormValues.total_production_qty / oeeFormValues.total_target_qty), 1);
+                // updateVal(id, oeeFormValues[id] + "%");
+                updateVal(id, "gauge", oeeFormValues[id], "%", oeeFormValues[id], "#88b04b", "OEE");
+            }
+
+            function updateVal(id, type, val, unit, perc, color, label) {
+                let value = validate_NAN(val);
+                let percentage = validate_NAN(perc);
+                let gauge = `
+                    <svg width="250" height="250" viewBox="0 0 100 100">
+                        <circle
+                            cx="50"
+                            cy="50"
+                            r="40"
+                            stroke="${color}4f"
+                            stroke-width="12"
+                            fill="none"
+                        />
+                        <circle
+                            cx="50"
+                            cy="50"
+                            r="40"
+                            stroke="${color}"
+                            stroke-width="12"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-dasharray="282.6"
+                            stroke-dashoffset="${282.6 - ((percentage / 100) * 282.6)}"
+                            transform="rotate(-90 50 50)"
+                        />
+                        <text
+                            x="50"
+                            y="55"
+                            text-anchor="middle"
+                            font-size="18"
+                            fill="white"
+                        >
+                            ${value + unit}
+                        </text>
+                    </svg>`;
+
+                let column = `
+                    <div class="chart-column">
+                        <div class="column-fill" style="height: ${percentage}%; background: ${color || "red"};"></div>
+                    </div>`;
+
+                document.getElementById(`val_${id}`).innerHTML = `
+                    <div class="result-value">
+                        ${type === "gauge" ? gauge : ""}
+                        ${type === "column" ? column : ""}
+                        <div class="chart-values">
+                            ${type ? `<div class="chart-legend" style="background: ${color || "red"};"></div>` : ""}
+                            <div class="text-xl">${value + unit}</div>
+                        </div>    
+                    </div>
+                    <div class="text-lg" id="label">${label}</div>
+                `;
+            }
+
+            function updateGauge(id, value, unit, color) {
+                document.getElementById(`val_${id}`).innerHTML = `
+                    ${gauge}
+                    <div class="chart-values">
+                        <div class="chart-legend" style="background: ${color || "red"};"></div>
+                        <div class="text-xl">${value}</div>
+                    </div>
+                `;
+            }
+
+            function fixed(value, pres) {
+                if (!pres) {
+                    return parseInt(value.toFixed(0));
+                }
+                return parseFloat(value.toFixed(pres));
+            }
+
+            function validate_NAN(data) {
+                if (isNaN(data) || !isFinite(data)) {
+                    return 0;
+                } else {
+                    return data;
+                }
+            }
+
+            function con_perc(val) {
+                return Math.min(Math.max(validate_NAN(val * 100), 0), 100);
+            }
+        }
+
+
+        function showResult(updatedDataKey) {
+
+            var options = {
+                chart: {
+                    type: 'bar'
+                },
+                series: [{
+                    name: 'sales',
+                    data: [30, 40, 45, 50, 49, 60, 70, 91, 125]
+                }],
+                xaxis: {
+                    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+                }
+            }
+
+            var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+            chart.render();
+
+        }
+    }
+</script>
+
+
+
+<!-- 
+form refrence:
+https://www.codingnepalweb.com/multi-step-form-html-css-javascript/
+ -->
