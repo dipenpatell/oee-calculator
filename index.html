@@ -9,66 +9,6 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         outline: none;
     }
 
-    .text-xs {
-        font-size: 0.75rem;
-        /* 12px */
-    }
-
-    .text-sm {
-        font-size: 0.875rem;
-        /* 14px */
-    }
-
-    .text-base {
-        font-size: 1rem;
-        /* 16px */
-    }
-
-    .text-lg {
-        font-size: 1.125rem;
-        /* 18px */
-    }
-
-    .text-xl {
-        font-size: 1.25rem;
-        /* 20px */
-    }
-
-    .text-2xl {
-        font-size: 1.5rem;
-        /* 24px */
-    }
-
-    .text-3xl {
-        font-size: 1.875rem;
-        /* 30px */
-    }
-
-    .text-4xl {
-        font-size: 2.25rem;
-        /* 36px */
-    }
-
-    .text-5xl {
-        font-size: 3rem;
-        /* 48px */
-    }
-
-    .text-6xl {
-        font-size: 3.75rem;
-        /* 60px */
-    }
-
-    .text-7xl {
-        font-size: 4.5rem;
-        /* 72px */
-    }
-
-    .text-8xl {
-        font-size: 6rem;
-        /* 96px */
-    }
-
     :root {
         --text-xs: 0.75rem;
         --text-sm: 0.875rem;
@@ -118,6 +58,10 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         --red-700: #911e1b;
         --brand-purple: #ab68ff;
         --yellow-900: #4d3b00;
+
+        --slider-track-color: #0073aa;
+        --slider-thumb-color: var(--lgt-primary-color);
+        --slider-thumb-border: #0073aa;
     }
 
     .hide {
@@ -293,12 +237,6 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         border-radius: 20px;
     }
 
-    .form__container header {
-        font-size: 35px;
-        font-weight: 600;
-        margin: 0 0 30px 0;
-    }
-
     .form-outer {
         flex: 1;
     }
@@ -313,7 +251,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
 
     .form-outer form .page .title {
         text-align: left;
-        font-size: 25px;
+        font-size: var(--text-2xl);
         font-weight: 500;
     }
 
@@ -342,13 +280,13 @@ https://codepen.io/ejsado/pen/yLNMPG -->
     }
     form .page .field .secondary-label{
         color: var(--lgt-sec-drk-txt-clr);
-        font-size: 14px;
+        font-size: var(--text-sm);
     }
 
     form .page .field input {
         border: 1px solid lightgrey;
         padding-left: 15px;
-        font-size: 18px;
+        font-size: var(--text-lg);
     }
 
     form .page .field .input-unit {
@@ -363,7 +301,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
     form .page .field select {
         width: 100%;
         padding-left: 10px;
-        font-size: 17px;
+        font-size: var(--text-lg);
         font-weight: 500;
     }
 
@@ -374,7 +312,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         color: var(--lgt-txt-clr);
         cursor: pointer;
         padding: 7px 15px;
-        font-size: 18px;
+        font-size: var(--text-lg);
         font-weight: 500;
         letter-spacing: 1px;
         text-transform: uppercase;
@@ -402,7 +340,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
     }
 
     .progress-bar .bullet {
-        font-size: 17px;
+        font-size: var(--text-lg);
         cursor: pointer;
         color: var(--lgt-gray-clr);
         border-bottom: 5px solid var(--lgt-gray-clr);
@@ -435,13 +373,6 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         }
     }
 
-
-    :root {
-        --slider-track-color: #0073aa;
-        --slider-thumb-color: var(--lgt-primary-color);
-        --slider-thumb-border: #0073aa;
-    }
-
     .range-wrapper {
         max-width: 400px;
         margin: auto;
@@ -452,7 +383,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
     }
 
     label {
-        font-size: 1rem;
+        font-size: var(--text-base);
         margin-bottom: 8px;
         display: block;
     }
@@ -503,7 +434,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         text-align: right;
         padding: 5px 10px;
         max-width: 100px;
-        font-size: 1rem;
+        font-size: var(--text-base);
         border-color: var(--slider-thumb-border);
         border: none !important;
         background: var(--gray-200);
@@ -572,8 +503,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
     .col-chart {
         display: flex;
         gap: 10px;
-        font-size: 1.125rem;
-        font-size: 15px;
+        font-size: var(--text-lg);
         /* flex-direction: column; */
     }
 
@@ -651,7 +581,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
 
     .value-count {
         margin-top: 8px;
-        font-size: 25px;
+        font-size: var(--text-2xl);
         font-weight: 600;
     }
 
@@ -695,7 +625,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
     .get-report-form  {
         box-shadow: 0px 0px 10px 0px #00000021;
         padding: 16px;
-        font-size: 16px;
+        font-size: var(--text-base);
         border-radius: 15px;
         display: flex;
         margin-top: 10px;
@@ -703,7 +633,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
     .get-report-form input {
         border: none;
         flex: 1;
-        font-size: 16px;
+        font-size: var(--text-base);
     }
     .get-report-form button {
         background: var(--lgt-primary-color);
@@ -711,7 +641,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         border-style: none;
         color: white;
         border-radius: 6px;
-        font-size: 16px;
+        font-size: var(--text-base);
         padding: 15px;
     }
     .form-dialog-wrapper{
@@ -720,7 +650,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         background: var(--lgt-inrbg-clr);
         border-radius: 20px;
         padding: 30px;
-        font-size: 18px;
+        font-size: var(--text-lg);
         gap: 15px;
         flex: 1;
         max-width: 400px;
@@ -754,7 +684,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         flex: 1;
         width: 100%;
         border-radius: 10px;
-        font-size: 18px;
+        font-size: var(--text-lg);
         padding: 16px;
         background: var(--gray-200);
         color: var(--lgt-sec-drk-txt-clr);
@@ -762,6 +692,19 @@ https://codepen.io/ejsado/pen/yLNMPG -->
     .form-input .input-title {
         margin: 10px 0;
         font-size:  var(--text-lg);
+    }
+
+    /* For mobile phones (480px and below) */
+    @media (max-width: 480px) {
+        .multi-step-wrapper {
+            flex-direction: row;
+        }
+        .progress-bar {
+            flex-direction: column;
+        }
+        .form__container {
+            flex-direction: column-reverse;
+        }
     }
 </style>
 <div class="section-wrapper">
