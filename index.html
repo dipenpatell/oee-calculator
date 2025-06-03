@@ -1,0 +1,1724 @@
+<!-- https://codepen.io/wikyware-net/pen/qBbopEG
+https://codepen.io/ejsado/pen/yLNMPG -->
+
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto);
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    :root {
+        --primary-color: #88b04b;
+        --white: #fff;
+        --black: #000;
+        --gray-50: #f9f9f9;
+        --gray-100: #ececec;
+        --gray-200: #e3e3e3;
+        --gray-300: #cdcdcd;
+        --gray-400: #b4b4b4;
+        --gray-500: #9b9b9b;
+        --gray-600: #676767;
+        --gray-700: #424242;
+        --gray-750: #2f2f2f;
+        --gray-800: #212121;
+        /* --gray-900: #171717; */
+
+        --lgt-primary-color: #88b04b;
+        --drk-bg-clr: #171717;
+        --drk-txt-clr: #fff;
+        --drk-sec-txt-clr: #9b9b9b;
+
+        --lgt-primary-color: #88b04b;
+        --lgt-dark-primary-color: #43893D;
+        --lgt-bg-clr: #F5F5F5;
+        --lgt-inrbg-clr: #fff;
+        --lgt-txt-clr: #000;
+        --lgt-sec-txt-clr: #9b9b9b;
+        --lgt-sec-drk-txt-clr: #1B1F26B8;
+        --lgt-gray-clr: #B5B5B5;
+
+
+        --gray-950: #0d0d0d;
+        --red-500: #e02e2a;
+        --red-700: #911e1b;
+        --brand-purple: #ab68ff;
+        --yellow-900: #4d3b00;
+    }
+
+    .hide {
+        display: none !important;
+    }
+
+    body {
+        background: var(--lgt-inrbg-clr);
+        color: var(--lgt-txt-clr);
+        font-family: Roboto, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .text-xs {
+        font-size: 0.75rem;
+        /* 12px */
+    }
+
+    .text-sm {
+        font-size: 0.875rem;
+        /* 14px */
+    }
+
+    .text-base {
+        font-size: 1rem;
+        /* 16px */
+    }
+
+    .text-lg {
+        font-size: 1.125rem;
+        /* 18px */
+    }
+
+    .text-xl {
+        font-size: 1.25rem;
+        /* 20px */
+    }
+
+    .text-2xl {
+        font-size: 1.5rem;
+        /* 24px */
+    }
+
+    .text-3xl {
+        font-size: 1.875rem;
+        /* 30px */
+    }
+
+    .text-4xl {
+        font-size: 2.25rem;
+        /* 36px */
+    }
+
+    .text-5xl {
+        font-size: 3rem;
+        /* 48px */
+    }
+
+    .text-6xl {
+        font-size: 3.75rem;
+        /* 60px */
+    }
+
+    .text-7xl {
+        font-size: 4.5rem;
+        /* 72px */
+    }
+
+    .text-8xl {
+        font-size: 6rem;
+        /* 96px */
+    }
+
+    .font-bold {
+        font-weight: 600;
+    }
+
+    .font-bolder {
+        font-weight: 800;
+    }
+
+    .clr-primary {
+        color: var(--lgt-primary-color);
+    }
+
+    .flex {
+        display: flex;
+    }
+
+    .flex-col {
+        flex-direction: column;
+    }
+
+    .flex-1 {
+        flex: 1;
+    }
+
+    .grid-50-50-col {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 1fr;
+    }
+
+    .grid-1fr-1fr-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    /* result */
+    .section-wrapper {
+        /* width: 100%; */
+        /* min-height: 500px; */
+        /* max-width: 1200px; */
+        /* margin-right: auto; */
+        /* margin-left: auto; */
+        /* gap: 150px; */
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #chart {
+        /* max-width: 650px; */
+        /* margin: 35px auto; */
+    }
+
+    /* Form */
+
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+    .multi-step-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 30px 30px;
+        background: var(--lgt-bg-clr);
+        margin: 20px 0;
+        border-radius: 20px;
+    }
+
+    .form__container {
+        display: flex;
+        gap: 30px;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+        color: var(--lgt-txt-clr);
+    }
+
+    .form-wrapper {
+        margin: auto 0;
+        min-width: 400px;
+        background: var(--lgt-inrbg-clr);
+        padding: 20px 35px;
+        border-radius: 20px;
+    }
+
+    .form__container header {
+        font-size: 35px;
+        font-weight: 600;
+        margin: 0 0 30px 0;
+    }
+
+    .form-outer {
+        flex: 1;
+    }
+
+    .form-outer form .page {
+        flex-direction: row;
+        /* min-width: 400px; */
+        display: flex;
+        transition: display 0.3s ease-in-out;
+        gap: 120px;
+    }
+
+    .form-outer form .page .title {
+        text-align: left;
+        font-size: 25px;
+        font-weight: 500;
+    }
+
+    .form-outer form .page .field {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0;
+    }
+
+    .form-outer form .page .field.btns {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    form .page .field .label {
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+
+    form .page .field .primary-label{
+        font-weight: 600;
+    }
+    form .page .field .secondary-label{
+        color: var(--lgt-sec-drk-txt-clr);
+        font-size: 14px;
+    }
+
+    form .page .field input {
+        border: 1px solid lightgrey;
+        padding-left: 15px;
+        font-size: 18px;
+    }
+
+    form .page .field .input-unit {
+        background: var(--gray-200);
+        color: var(--lgt-sec-drk-txt-clr);
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+        padding: 5px 10px;
+    }
+
+    form .page .field select {
+        width: 100%;
+        padding-left: 10px;
+        font-size: 17px;
+        font-weight: 500;
+    }
+
+    form .page .field button {
+        border: none;
+        background: var(--lgt-primary-color);
+        border-radius: 5px;
+        color: var(--lgt-txt-clr);
+        cursor: pointer;
+        padding: 7px 15px;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: 0.5s ease;
+    }
+
+    form .page .field button:hover {
+        background: var(--lgt-gray-clr);
+    }
+
+    form .page .btns button.next {
+        margin-left: 3px;
+    }
+
+    .progress-bar {
+        display: flex;
+        /* flex-direction: column; */
+        gap: 3rem;
+        text-align: center;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        margin-bottom: 40px;
+    }
+
+    .progress-bar .bullet {
+        font-size: 17px;
+        cursor: pointer;
+        color: var(--lgt-gray-clr);
+        border-bottom: 5px solid var(--lgt-gray-clr);
+        font-weight: 600;
+        padding-bottom: 14px;
+        flex: 1;
+    }
+
+    .progress-bar .bullet.active {
+        color: var(--lgt-dark-primary-color);
+        border-bottom: 5px solid var(--lgt-dark-primary-color);
+    }
+
+    .progress-bar .flow-line {
+        display: none;
+        height: 44px;
+        width: 3px;
+        background: var(--lgt-txt-clr);
+        margin: auto;
+    }
+
+    .progress-bar .flow-line.active {
+        background: var(--lgt-dark-primary-color);
+        animation: animate 0.3s linear forwards;
+    }
+
+    @keyframes animate {
+        100% {
+            transform: scaleX(1);
+        }
+    }
+
+
+    :root {
+        --slider-track-color: #0073aa;
+        --slider-thumb-color: var(--lgt-primary-color);
+        --slider-thumb-border: #0073aa;
+    }
+
+    .range-wrapper {
+        max-width: 400px;
+        margin: auto;
+        background: var(--lgt-txt-clr);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        font-size: 1rem;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .input-group {
+        display: block;
+    }
+
+    .range-group {
+        display: flex;
+        justify-content: space-between;
+        color: var(--lgt-sec-drk-txt-clr);
+    }
+
+    .range-group>div {
+        color: var(--lgt-sec-drk-txt-clr);
+    }
+
+    input[type="range"] {
+        -webkit-appearance: none;
+        height: 6px;
+        background: #ddd;
+        border-radius: 5px;
+        outline: none;
+        cursor: pointer;
+        margin: 20px 0;
+        width: 100%;
+        padding: 0 !important;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        background: var(--slider-thumb-color);
+        border: 1px solid var(--slider-thumb-border);
+        border-radius: 50%;
+        cursor: pointer;
+
+        border: 1px solid #e6e9eb;
+        -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, .3);
+        -moz-box-shadow: 0 0 7px rgba(0, 0, 0, .3);
+        -o-box-shadow: 0 0 7px rgba(0, 0, 0, .3);
+        box-shadow: 0 0 7px rgba(0, 0, 0, .3);
+    }
+
+    input[type="number"] {
+        text-align: right;
+        padding: 5px 10px;
+        max-width: 100px;
+        font-size: 1rem;
+        border-color: var(--slider-thumb-border);
+        border: none !important;
+        background: var(--gray-200);
+        color: var(--lgt-sec-drk-txt-clr);
+    }
+
+    .result-container {
+        overflow: hidden;
+        /* width: 100%; */
+        margin-top: auto;
+        margin-bottom: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .result-wrapper {
+        display: flex;
+        /* flex-direction: column; */
+        gap: 25px;
+        flex: 1;
+        text-align: left;
+    }
+
+    .result-wrapper .result {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .sub-result {
+        display: flex;
+        flex: 1;
+        gap: 30px;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .result-wrapper .result-value {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .result-container .result {
+        width: 100%;
+    }
+
+    .result .result-title {
+        color: var(--lgt-txt-clr);
+        font-weight: 600;
+        width: 100%;
+        margin-bottom: 8px;
+        font-family: 16px;
+    }
+
+    .result .result-value {
+        width: 100%;
+    }
+
+    .col-chart {
+        display: flex;
+        gap: 10px;
+        font-size: 1.125rem;
+        font-size: 15px;
+        /* flex-direction: column; */
+    }
+
+    .chart-column {
+        width: 15px;
+        /* background: #ff000033; */
+        /* height: 100%; */
+        min-height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        border-radius: 4px;
+    }
+
+    .column-fill {
+        width: 100%;
+        background: red;
+        border-radius: 4px;
+    }
+
+    .chart-bar {
+        height: 15px;
+        min-width: 150px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border-radius: 20px;
+    }
+
+    .bar-fill {
+        height: 100%;
+        background: red;
+        border-radius: 20px;
+    }
+
+    .chart-legend {
+        height: 10px;
+        width: 10px;
+        margin: 5px;
+        background-color: red;
+        border-radius: 50%;
+    }
+
+    .chart-values {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        color: var(--lgt-txt-clr);
+    }
+
+    .center-absolute {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        align-items: center;
+    }
+
+
+    .chart-legends {
+        display: flex;
+    }
+
+    .values-card {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .value-card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .value-count {
+        margin-top: 8px;
+        font-size: 25px;
+        font-weight: 600;
+    }
+
+    .value-label {
+        color: var(--lgt-sec-drk-txt-clr);
+    }
+
+    .value-cards {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .total-result {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .saparator-line {
+        height: 2px;
+        width: 100%;
+        background: var(--lgt-sec-txt-clr);
+    }
+    .result-bar-charts {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding: 10px;
+        flex: 1;
+    }
+    .calc-result {
+        display: flex;
+        flex-direction: column;
+        gap: 27px;
+        line-height: 1.4;
+        color: var(--gray-600);
+    }
+    .base-text-clr {
+        color: var(--lgt-txt-clr);
+    }
+    .get-report-form  {
+        box-shadow: 0px 0px 10px 0px #00000021;
+        padding: 16px;
+        font-size: 16px;
+        border-radius: 15px;
+        display: flex;
+        margin-top: 10px;
+    }
+    .get-report-form input {
+        border: none;
+        flex: 1;
+        font-size: 16px;
+    }
+    .get-report-form button {
+        background: var(--lgt-primary-color);
+        padding: 5px;
+        border-style: none;
+        color: white;
+        border-radius: 6px;
+        font-size: 16px;
+        padding: 15px;
+    }
+</style>
+<div class="section-wrapper">
+    <div class="multi-step-wrapper">
+        <div class="progress-bar">
+            <div class="bullet active" id="showPage_0">
+                Basic Details
+            </div>
+            <div class="flow-line active"></div>
+            <div class="bullet" id="showPage_1">
+                Availibility
+            </div>
+            <div class="flow-line"></div>
+            <div class="bullet" id="showPage_2">
+                Performance
+            </div>
+            <div class="flow-line"></div>
+            <div class="bullet hide" id="showPage_3">
+                Quality
+            </div>
+            <div class="flow-line"></div>
+            <div class="bullet" id="showPage_4">
+                OEE
+            </div>
+        </div>
+        <div class="form__container">
+            <div class="form-outer">
+                <form action="#" id="form_oee_page">
+                </form>
+            </div>
+            <div class="result-container">
+                <div class="total-result">
+                    <div class="values-card">
+                        <div class="value-card" id="total_investment"></div>
+                        <div class="value-card" id="max_output_per_months_per_machine"></div>
+                        <div class="value-card" id="ROI_in_months"></div>
+                    </div>
+                </div>
+                <div class="saparator-line"></div>
+                <div class="result-page result-wrapper">
+                    <div class="result clr-primary" id="val_availibility"></div>
+                    <div class="result clr-primary" id="val_performance"></div>
+                    <div class="result clr-primary" id="val_quality"></div>
+                    <div class="result clr-primary" id="val_oee"></div>
+                </div>
+                <div class="flex" style="gap: 50px;">
+                    <div class="result-bar-charts">
+                        <div class="result" id="val_available_time"></div>
+                        <div class="result" id="val_total_downtime"></div>
+                        <div class="result" id="val_total_production_qty"></div>
+                    </div>
+                    <div class="result-bar-charts">
+                        <div class="result" id="val_planned_production_time"></div>
+                        <div class="result" id="val_act_productive_time"></div>
+                        <div class="result" id="val_net_qty"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script>
+
+
+    // Actions
+    const formOuter = document.querySelector(".form-outer");
+    const pages = document.querySelectorAll(".form-outer .page");
+    const nextBtns = document.querySelectorAll(".next");
+    const prevBtns = document.querySelectorAll(".prev");
+    const bullets = document.querySelectorAll(".progress-bar .bullet");
+    const flowLines = document.querySelectorAll(".progress-bar .flow-line");
+
+    let currentPage = 4;
+
+    init();
+
+    function init() {
+
+        [0,1,2,4].forEach((idx) => {
+            document.getElementById("showPage_" + idx).addEventListener('click', e => {
+                showPage(idx);
+            });
+        });
+
+        // initial values
+        let oeeFormValues = {
+            // Basic Details
+            total_machines: 1,
+            MHR_rate: 20,
+            total_investment: 0,
+            avg_machine_cost: 20000,
+            working_days_per_week: 6,
+
+            // Availibility 
+            total_shift_time: 1440,
+            total_shifts: 1,
+            planned_downtime: 60,
+            unplanned_downtime: 250,
+            planned_production_time: 0,
+            available_time: 0,
+            availibility: 0,
+
+            // Performance 
+            std_cycle_time: 5,
+            loading_time: 1,
+            total_cycle_time: 0,
+            total_production_qty: 200,
+            total_target_qty: 0,
+            act_productive_time: 0,
+            performance: 0,
+
+            // Quality
+            total_rejection_qty: 20,
+            net_qty: 180,
+            quality: 0,
+
+            // OEE
+            oee: 0,
+            inds_std_oee: 85,
+            max_output_per_day_per_machine: 0,
+            max_output_per_months_per_machine: 0,
+            total_output_per_hour_per_machine: 0,
+            total_output_per_day_per_machine: 0,
+            total_output_per_weeks_per_machine: 0,
+            total_output_per_months_per_machine: 0,
+            total_output_per_years_per_machine: 0,
+
+            invest_autobits_year_per_machine: 650,
+            ROI_in_hours: 0,
+            ROI_in_days: 0,
+            ROI_in_weeks: 0,
+            ROI_in_months: 0,
+            ROI_in_years: 0,
+            ROI_perc: 0,
+
+        };
+
+        let totalMachines = {
+            // Basic Details	            
+            avg_machine_cost: 20000,//
+
+            // Availibility 
+            total_shift_time: 1440,//
+            planned_downtime: 60,//
+            unplanned_downtime: 250,//
+            planned_production_time: 0,//
+            available_time: 0,//
+            availibility: 0,//
+
+            // Performance 
+            total_production_qty: 200,//
+            total_target_qty: 0,//
+            performance: 0,//
+
+            // Quality
+            total_rejection_qty: 20,//
+            net_qty: 180,//
+            quality: 0,
+
+            // OEE
+            oee: 0,
+            max_output_per_day_per_machine: 0,
+            max_output_per_months_per_machine: 0,
+            total_output_per_hour_per_machine: 0,
+            total_output_per_day_per_machine: 0,
+            total_output_per_weeks_per_machine: 0,
+            total_output_per_months_per_machine: 0,
+            total_output_per_years_per_machine: 0,
+
+            invest_autobits_year_per_machine: 650,//
+            ROI_in_hours: 0,
+            ROI_in_days: 0,
+            ROI_in_weeks: 0,
+            ROI_in_months: 0,
+            ROI_in_years: 0,
+            ROI_perc: 0,
+        };
+
+        showPage(currentPage);
+        // initForm();
+
+        function initForm() {
+
+            formOuter.addEventListener('input', e => {
+                const m = e.target.id.match(/^(.+)(Range|Input)$/);
+                if (m) {
+                    const [, id, type] = m;
+                    let val = +e.target.value;
+                    const { min, max, value } = e.target;
+
+                    let numbers = document.querySelectorAll(`#${id}Input`);
+                    let ranges = document.querySelectorAll(`#${id}Range`);
+
+                    if (type === "Range") {
+                        oeeFormValues[id] = parseInt(value);
+                        numbers.forEach((ele) => ele.value = value);
+                        ranges.forEach((ele) => ele.value = value);
+                        updateData(id);
+                    } else if (type === "Input") {
+                        const val = parseInt(Math.max(min, Math.min(max, value)));
+                        oeeFormValues[id] = val;
+                        numbers.forEach((ele) => ele.value = val);
+                        ranges.forEach((ele) => ele.value = val);
+                        updateData(id);
+                    }
+                }
+            });
+
+            // Basic Details
+            uptMachineTotals("invest_autobits_year_per_machine");
+            uptTotalInvestment();
+            rangeAndTextInput(
+                'Total Machines',
+                '(Number of Machines in your shop floor)',
+                'total_machines',
+                { min: 1, max: 500, value: oeeFormValues.total_machines }
+            );
+            rangeAndTextInput(
+                'MHR $',
+                '(Machine Hour Rate)',
+                'MHR_rate',
+                { min: 1, max: 10000, value: oeeFormValues.MHR_rate }
+            );
+            rangeAndTextInput(
+                'Avg. Machine Cost $',
+                '(Average cost of your machine)',
+                'avg_machine_cost',
+                { min: 1, max: 100000, value: oeeFormValues.avg_machine_cost }
+            );
+
+            // rangeAndTextInput(
+            //     'Working Days per Week',
+            //     '',
+            //     'working_days_per_week',
+            //     { min: 1, max: 7, value: oeeFormValues.working_days_per_week }
+            // );
+
+            // Availibility 
+            uptTotalShiftTime()
+            rangeAndTextInput(
+                'Shifts',
+                '',
+                'total_shifts',
+                { min: 1, max: 3, value: oeeFormValues.total_shifts }
+            );
+            rangeAndTextInput(
+                'Planned Downtime/shift',
+                '(Break, preventive maintenance, Cleaning, etc.) ',
+                'planned_downtime',
+                { min: 0, max: oeeFormValues.total_shift_time - oeeFormValues.unplanned_downtime, value: oeeFormValues.planned_downtime }
+            );
+            rangeAndTextInput(
+                'Unplanned Downtime/shift',
+                '',
+                'unplanned_downtime',
+                { min: 0, max: oeeFormValues.total_shift_time - oeeFormValues.planned_downtime, value: oeeFormValues.unplanned_downtime }
+            );
+            updateVal("total_downtime", "bar", oeeFormValues["planned_downtime"] + oeeFormValues["unplanned_downtime"], (oeeFormValues.total_shift_time - (oeeFormValues.unplanned_downtime + oeeFormValues.unplanned_downtime)), "mins", con_perc((oeeFormValues["planned_downtime"] + oeeFormValues["unplanned_downtime"]) / (oeeFormValues.total_shift_time - (oeeFormValues.unplanned_downtime + oeeFormValues.unplanned_downtime))), "#ff8b00", "Total Downtime");
+            // updateVal("planned_downtime", "column", oeeFormValues["planned_downtime"], (oeeFormValues.total_shift_time - oeeFormValues.unplanned_downtime), "mins", con_perc(oeeFormValues["planned_downtime"] / (oeeFormValues.total_shift_time - oeeFormValues.unplanned_downtime)), "#ff8b00", "Planned<br>Production Time");
+            // updateVal("unplanned_downtime", "column", oeeFormValues["unplanned_downtime"], (oeeFormValues.total_shift_time - oeeFormValues.planned_downtime), "mins", con_perc(oeeFormValues["unplanned_downtime"] / (oeeFormValues.total_shift_time - oeeFormValues.planned_downtime)), "#ff8b00", "Unplanned<br>Production Time");
+            uptplannedProductionTime();
+            uptAvailableTime();
+            uptAvailibility();
+
+
+            // Performance 
+            rangeAndTextInput(
+                'Std Cycle Time (Min)',
+                '',
+                'std_cycle_time',
+                { min: 1, max: 1440, value: oeeFormValues.std_cycle_time }
+            );
+            rangeAndTextInput(
+                'Loading Time (Min)',
+                '',
+                'loading_time',
+                { min: 1, max: 1440, value: oeeFormValues.loading_time }
+            );
+            rangeAndTextInput(
+                'Total Production Qty',
+                '',
+                'total_production_qty',
+                { min: 1, max: 10000, value: oeeFormValues.total_production_qty }
+            );
+            uptTotalTarget();
+            uptTotalCycleTime();
+            uptPerformance();
+
+            // Quality
+            rangeAndTextInput(
+                'Rejection Qty',
+                '',
+                'total_rejection_qty',
+                { min: 0, max: 10000, value: oeeFormValues.total_rejection_qty }
+            );
+            updateVal("total_production_qty", "bar", oeeFormValues.total_production_qty, 10000, "pcs", con_perc(oeeFormValues.total_production_qty / 10000), "#96BC46", "Total Production Quantity");
+            updateVal("net_qty", "bar", oeeFormValues.total_rejection_qty, oeeFormValues.total_production_qty, "pcs", con_perc(oeeFormValues.total_rejection_qty / oeeFormValues.total_production_qty), "#96BC46", "Good Production Quantity");
+            uptQuality();
+
+            // OEE
+            uptROIPerc();
+            uptOEE();
+            uptTotalOutputPerDayPerMachine();
+            uptTotalOutputPerHourPerMachine();
+            uptMaxOutputPerDayPerMachine();
+            setValueShow(
+                "Investment 1 year on Autobits $ Per machine",
+                "invest_autobits_year_per_machine",
+                oeeFormValues.invest_autobits_year_per_machine,
+                "$"
+            );
+            uptROIInHours();
+
+
+            //  if any of this value changes do specific functions
+            function updateData(updatedDataKey) {
+
+
+                // Basic Details
+                if (updatedDataKey === "total_machines") {
+                    uptTotalMachines();
+                }
+                else if (updatedDataKey === "MHR_rate") {
+                    uptMachineTotals(updatedDataKey);
+                    uptTotalOutputPerDayPerMachine();
+                    uptMaxOutputPerDayPerMachine();
+                }
+                else if (updatedDataKey === "avg_machine_cost") {
+                    uptMachineTotals(updatedDataKey);
+
+                    uptTotalInvestment();
+                    uptROIInHours();
+                }
+                else if (updatedDataKey === "working_days_per_week") {
+                    uptTotalOutputPerWeeksPerMachine();
+                }
+
+                // Availibility 
+                else if (updatedDataKey === "total_shifts") {
+                    uptTotalShiftTime();
+                    uptplannedProductionTime();
+                    uptAvailableTime();
+                }
+                else if (updatedDataKey === "planned_downtime") {
+                    uptMachineTotals(updatedDataKey);
+                    uptplannedProductionTime();
+                    uptAvailableTime();
+                    uptMaxUnplannedDowntime();
+                    uptTotalDowntime();
+                }
+                else if (updatedDataKey === "unplanned_downtime") {
+                    uptMachineTotals(updatedDataKey);
+                    uptAvailableTime();
+                    uptMaxPlannedDowntime();
+                    uptTotalDowntime();
+                }
+
+                // Performance
+                else if (updatedDataKey === "std_cycle_time") {
+                    uptMachineTotals(updatedDataKey);
+                    uptTotalCycleTime();
+                }
+                else if (updatedDataKey === "loading_time") {
+                    uptMachineTotals(updatedDataKey);
+                    uptTotalCycleTime();
+                }
+                else if (updatedDataKey === "total_production_qty") {
+                    uptMachineTotals(updatedDataKey);
+
+                    updateVal("total_production_qty", "bar", totalMachines.total_production_qty, 10000, "pcs", con_perc(totalMachines.total_production_qty/ 10000), "#96BC46", "Total Production Quantity");
+                    uptActProductiveTime();
+                    uptNetQty();
+                    uptPerformance();
+                    uptQuality();
+                }
+
+                // Quality
+                else if (updatedDataKey === "total_rejection_qty") {
+                    uptMachineTotals(updatedDataKey);
+                    uptNetQty();
+                }
+
+            }
+
+
+            // Update on value or state change
+            function uptTotalMachines() {
+
+                [
+                    "avg_machine_cost",
+                    "total_shift_time",
+                    "planned_downtime",
+                    "unplanned_downtime",
+                    "total_production_qty",
+                    "total_target_qty",
+                    "total_rejection_qty",
+                    "net_qty",
+                    "invest_autobits_year_per_machine",
+                    "planned_production_time",
+                    "available_time"
+                ].forEach((id) => {
+                    uptMachineTotals(id);
+                });
+
+                // Your Investment
+                uptTotalInvestment();
+
+                // Availibility 
+                totalMachines["availibility"] = fixed(con_perc(totalMachines.available_time / totalMachines.planned_production_time), 1);
+
+                // Performance 
+                totalMachines["performance"] = fixed(con_perc(totalMachines.total_production_qty / totalMachines.total_target_qty), 1);
+
+                // Quality
+                totalMachines["quality"] = fixed(con_perc(totalMachines.net_qty / totalMachines.total_production_qty), 1);
+
+                // OEE
+                uptOEE();
+
+            }
+
+            function uptTotalInvestment() {
+                let id = "total_investment";
+                oeeFormValues[id] = oeeFormValues.avg_machine_cost + oeeFormValues.invest_autobits_year_per_machine;
+                uptMachineTotals("total_investment");
+                setValueShow(
+                    "Your Total Investment",
+                    id,
+                    totalMachines[id],
+                    "$"
+                );
+
+                uptROIPerc();
+            }
+
+            function uptMachineTotals(id) {
+                totalMachines[id] = oeeFormValues[id] * oeeFormValues.total_machines;
+            }
+
+            function uptMaxShiftTime() {
+                rangeAndTextInput(
+                    'Std Cycle Time (Min)',
+                    '',
+                    'std_cycle_time',
+                    { min: 1, max: oeeFormValues.total_shift_time, value: oeeFormValues.std_cycle_time }
+                );
+                rangeAndTextInput(
+                    'Loading Time (Min)',
+                    '',
+                    'loading_time',
+                    { min: 1, max: oeeFormValues.total_shift_time, value: oeeFormValues.loading_time }
+                );
+            }
+
+            function uptMaxPlannedDowntime() {
+                rangeAndTextInput(
+                    'Planned Downtime/shift',
+                    '(Break, preventive maintenance, Cleaning, etc.) ',
+                    'planned_downtime',
+                    { min: 0, max: oeeFormValues.total_shift_time - oeeFormValues.unplanned_downtime, value: oeeFormValues.planned_downtime }
+                );
+                // updateVal("unplanned_downtime", "column", oeeFormValues["unplanned_downtime"], "mins", con_perc(oeeFormValues["unplanned_downtime"] / (oeeFormValues.total_shift_time - oeeFormValues.planned_downtime)), "#ff8b00", "Unplanned<br>Production Time");
+
+            }
+
+            function uptMaxUnplannedDowntime() {
+                rangeAndTextInput(
+                    'Unplanned Downtime/shift ',
+                    '',
+                    'unplanned_downtime',
+                    { min: 0, max: oeeFormValues.total_shift_time - oeeFormValues.planned_downtime, value: oeeFormValues.unplanned_downtime }
+                );
+                // updateVal("planned_downtime", "column", oeeFormValues["planned_downtime"], "mins", con_perc(oeeFormValues["planned_downtime"] / (oeeFormValues.total_shift_time - oeeFormValues.unplanned_downtime)), "#ff8b00", "Planned<br>Production Time");
+
+            }
+
+            function uptTotalDowntime() {
+                updateVal("total_downtime", "bar", oeeFormValues["planned_downtime"] + oeeFormValues["unplanned_downtime"], oeeFormValues.total_shift_time, "mins", con_perc((oeeFormValues["planned_downtime"] + oeeFormValues["unplanned_downtime"]) / oeeFormValues.total_shift_time), "#ff8b00", "Total Downtime");
+            }
+
+            function uptplannedProductionTime() {
+                let id = "planned_production_time";
+                oeeFormValues[id] = (oeeFormValues.total_shift_time - oeeFormValues.planned_downtime) * oeeFormValues.total_shifts;
+                uptMachineTotals(id);
+                updateVal(id, "bar", totalMachines[id], totalMachines.total_shift_time, "mins", con_perc(totalMachines[id] / totalMachines.total_shift_time), "#ff8b00", "Planned Production Time");
+
+                uptAvailibility();
+                uptTotalTarget();
+                uptTotalOutputPerDayPerMachine()
+                uptROIInDays();
+                uptROIInMonths();
+            }
+
+            function uptTotalShiftTime() {
+                let id = "total_shift_time";
+                oeeFormValues[id] = 1440 / oeeFormValues.total_shifts;
+                uptMachineTotals(id);
+                setValueShow(
+                    "Avg. Shift Time",
+                    "total_shift_time",
+                    totalMachines["total_shift_time"],
+                    "mins"
+                );
+
+                uptMaxShiftTime();
+                uptMaxPlannedDowntime();
+                uptMaxUnplannedDowntime();
+                uptTotalDowntime();
+                uptplannedProductionTime();
+                uptAvailableTime();
+            }
+
+            function uptAvailableTime() {
+                let id = "available_time";
+                oeeFormValues[id] = (oeeFormValues.total_shift_time - oeeFormValues.planned_downtime - oeeFormValues.unplanned_downtime) * oeeFormValues.total_shifts;
+                uptMachineTotals(id);
+                updateVal(id, "bar", totalMachines[id], totalMachines.total_shift_time, "mins", con_perc(totalMachines[id] / totalMachines.total_shift_time), "#256eff", "Available / Operating Time");
+                // updateColumnVal(id, oeeFormValues[id] + "mins", "#256eff");
+                uptAvailibility();
+            }
+
+            function uptAvailibility() {
+                let id = "availibility";
+                oeeFormValues[id] = fixed(con_perc(oeeFormValues.available_time / oeeFormValues.planned_production_time), 1);
+                totalMachines[id] = fixed(con_perc(totalMachines.available_time / totalMachines.planned_production_time), 1);
+                updateVal(id, "gauge", totalMachines[id], 100, "%", totalMachines[id], "#96BC46", "AVAILIBILITY");
+                // updateGauge(id, oeeFormValues[id], "mins", "#256eff");
+                uptOEE();
+            }
+
+            function uptTotalCycleTime() {
+                let id = "total_cycle_time";
+                oeeFormValues[id] = parseInt(oeeFormValues.std_cycle_time) + parseInt(oeeFormValues.loading_time);
+                uptTotalTarget();
+                uptActProductiveTime();
+            }
+
+            function uptTotalTarget() {
+                let id = "total_target_qty";
+                oeeFormValues[id] = fixed(validate_NAN(oeeFormValues.planned_production_time / oeeFormValues.total_cycle_time));
+                uptMachineTotals(id);
+
+                uptActProductiveTime();
+                uptPerformance();
+            }
+
+            function uptActProductiveTime() {
+                let id = "act_productive_time";
+                oeeFormValues[id] = (oeeFormValues.total_cycle_time * oeeFormValues.total_production_qty);
+                uptMachineTotals(id);
+                updateVal(id, "bar", totalMachines[id], 100, "mins", con_perc((oeeFormValues.total_cycle_time * oeeFormValues.total_production_qty) / (oeeFormValues.total_cycle_time * oeeFormValues.total_target_qty), true), "#ff8b00", "Actual Production Time");
+            }
+
+            function uptPerformance() {
+                let id = "performance";
+                oeeFormValues[id] = fixed(con_perc(oeeFormValues.total_production_qty / oeeFormValues.total_target_qty), 1);
+                totalMachines[id] = fixed(con_perc(totalMachines.total_production_qty / totalMachines.total_target_qty), 1);
+                updateVal(id, "gauge", totalMachines[id], 100, "%", totalMachines[id], "#FF8201", "PERFORMANCE");
+                uptOEE();
+            }
+
+            function uptNetQty() {
+                let id = "net_qty";
+                oeeFormValues[id] = oeeFormValues.total_production_qty - oeeFormValues.total_rejection_qty;
+                totalMachines[id] = totalMachines.total_production_qty - totalMachines.total_rejection_qty;
+
+                updateVal("net_qty", "bar", totalMachines.total_rejection_qty, totalMachines.total_production_qty, "pcs", con_perc(totalMachines.total_rejection_qty / totalMachines.total_production_qty), "#96BC46", "Good Production Quantity");
+                uptQuality();
+            }
+
+            function uptQuality() {
+                let id = "quality";
+                oeeFormValues[id] = fixed(con_perc(oeeFormValues.net_qty / oeeFormValues.total_production_qty), 1);
+                totalMachines[id] = fixed(con_perc(totalMachines.net_qty / totalMachines.total_production_qty), 1);
+                updateVal(id, "gauge", totalMachines[id], 100, "%", totalMachines[id], "#D30009", "QUALITY");
+                uptOEE();
+            }
+
+            function uptOEE() {
+                let id = "oee";
+
+                oeeFormValues[id] = fixed(con_perc(oeeFormValues.availibility * oeeFormValues.performance * oeeFormValues.quality / 1000000), 1);
+                totalMachines[id] = fixed(con_perc(totalMachines.availibility * totalMachines.performance * totalMachines.quality / 1000000), 1);
+                updateVal(id, "gauge", totalMachines[id], 100, "%", totalMachines[id], "#1C7BFF", "OEE");
+                if(document.getElementById("final_result_oee")) {
+                    document.getElementById("final_result_oee").innerHTML = totalMachines[id] + "%";
+                    document.getElementById("final_inds_oee").innerHTML = parseInt(oeeFormValues.inds_std_oee) + "%";
+                    document.getElementById("final_diff_oee").innerHTML = parseInt(oeeFormValues.inds_std_oee) - parseInt(totalMachines[id]) + "%";
+                }
+            }
+
+            function uptTotalOutputPerHourPerMachine() {
+                let id = "total_output_per_hour_per_machine";
+                oeeFormValues[id] = oeeFormValues.MHR_rate;
+                totalMachines[id] = oeeFormValues.MHR_rate;
+                // setValueShow(
+                //     "output per Hour $",
+                //     "total_output_per_hour_per_machine",
+                //     totalMachines[id],
+                //     "$"
+                // );
+
+                uptROIInHours();
+            }
+
+            function uptMaxOutputPerDayPerMachine() {
+                oeeFormValues["max_output_per_day_per_machine"] = fixed(validate_NAN(oeeFormValues.MHR_rate * 24), 0);
+                totalMachines["max_output_per_day_per_machine"] = fixed(validate_NAN(oeeFormValues.MHR_rate * 24), 0);
+
+                setValueShow(
+                    "Daily Max Output",
+                    "max_output_per_day_per_machine",
+                    totalMachines["max_output_per_day_per_machine"],
+                    "$"
+                );
+
+                uptMaxOutputPerMonthPerMachine();
+            }
+
+            function uptMaxOutputPerMonthPerMachine() {
+                oeeFormValues["max_output_per_months_per_machine"] = fixed(validate_NAN(oeeFormValues.max_output_per_day_per_machine * 30.5), 0);
+                totalMachines["max_output_per_months_per_machine"] = fixed(validate_NAN(totalMachines.max_output_per_day_per_machine * 30.5), 0);
+
+                uptOutPerMonthPerMachineresl();
+                uptROIPerc();
+            }
+
+            function uptOutPerMonthPerMachineresl() {
+
+
+                setValueShow(
+                    "Monthly Max Output",
+                    "max_output_per_months_per_machine",
+                    totalMachines["total_output_per_months_per_machine"],
+                    "$",
+                    totalMachines["max_output_per_months_per_machine"]
+                );
+            }
+
+            function uptTotalOutputPerDayPerMachine() {
+                // Day
+                oeeFormValues["total_output_per_day_per_machine"] = fixed(validate_NAN(oeeFormValues.MHR_rate * (oeeFormValues.planned_production_time / 60)), 0);
+                totalMachines["total_output_per_day_per_machine"] = fixed(validate_NAN(oeeFormValues.MHR_rate * (totalMachines.planned_production_time / 60)), 0);
+
+                // setValueShow(
+                //     "output per Day $",
+                //     "total_output_per_day_per_machine",
+                //     totalMachines["total_output_per_day_per_machine"],
+                //     "$"
+                // );
+
+                uptTotalOutputPerWeeksPerMachine();
+                uptTotalOutputPerMonthsPerMachine();
+                uptTotalOutputPerYearsPerMachine();
+            }
+
+            function uptTotalOutputPerWeeksPerMachine() {
+                // Week
+                oeeFormValues["total_output_per_weeks_per_machine"] = fixed(validate_NAN(oeeFormValues.total_output_per_day_per_machine * 7), 0);
+                totalMachines["total_output_per_weeks_per_machine"] = fixed(validate_NAN(totalMachines.total_output_per_day_per_machine * 7), 0);
+                setValueShow(
+                    "output per week $",
+                    "total_output_per_weeks_per_machine",
+                    totalMachines["total_output_per_weeks_per_machine"],
+                    "$"
+                );
+            }
+
+            function uptTotalOutputPerMonthsPerMachine() {
+                // Month
+                oeeFormValues["total_output_per_months_per_machine"] = fixed(validate_NAN(oeeFormValues.total_output_per_day_per_machine * 30.5), 0);
+                totalMachines["total_output_per_months_per_machine"] = fixed(validate_NAN(totalMachines.total_output_per_day_per_machine * 30.5), 0);
+                setValueShow(
+                    "output per month $",
+                    "total_output_per_months_per_machine",
+                    totalMachines["total_output_per_months_per_machine"],
+                    "$"
+                );
+
+                uptOutPerMonthPerMachineresl();
+            }
+
+            function uptTotalOutputPerYearsPerMachine() {
+                // Year
+                oeeFormValues["total_output_per_years_per_machine"] = fixed(validate_NAN(oeeFormValues.total_output_per_day_per_machine * 365), 0);
+                totalMachines["total_output_per_years_per_machine"] = fixed(validate_NAN(totalMachines.total_output_per_day_per_machine * 365), 0);
+                setValueShow(
+                    "output per year $",
+                    "total_output_per_years_per_machine",
+                    totalMachines["total_output_per_years_per_machine"],
+                    "$"
+                );
+            }
+
+            function uptROIInHours() {
+                let id = "ROI_in_hours";
+                oeeFormValues[id] = fixed(validate_NAN((oeeFormValues.avg_machine_cost + oeeFormValues.invest_autobits_year_per_machine) / oeeFormValues.total_output_per_hour_per_machine), 0);
+                totalMachines[id] = fixed(validate_NAN((totalMachines.avg_machine_cost + totalMachines.invest_autobits_year_per_machine) / totalMachines.total_output_per_hour_per_machine), 0);
+
+                // setValueShow(
+                //     "ROI In Hours",
+                //     "ROI_in_hours",
+                //     totalMachines[id],
+                //     "h"
+                // );
+                uptROIInDays();
+            }
+
+            function uptROIInDays() {
+                // Days
+                oeeFormValues["ROI_in_days"] = fixed(validate_NAN(oeeFormValues.ROI_in_hours / (oeeFormValues.planned_production_time / 60)), 0);
+                totalMachines["ROI_in_days"] = fixed(validate_NAN(totalMachines.ROI_in_hours / (totalMachines.planned_production_time / 60)), 0);
+                // setValueShow(
+                //     "ROI In Days",
+                //     "ROI_in_days",
+                //     totalMachines.ROI_in_days,
+                //     "d"
+                // );
+
+                // uptROIInWeeks();
+                uptROIInMonths();
+                // uptROIInYears();
+            }
+
+            function uptROIInWeeks() {
+
+                // Weeks
+                oeeFormValues["ROI_in_weeks"] = fixed(validate_NAN(oeeFormValues.ROI_in_days / 7), 0);
+                totalMachines["ROI_in_weeks"] = fixed(validate_NAN(totalMachines.ROI_in_days / 7), 0);
+                // setValueShow(
+                //     "ROI In Weeks",
+                //     "ROI_in_weeks",
+                //     totalMachines.ROI_in_weeks,
+                //     "w"
+                // );
+            }
+
+            function uptROIInMonths() {
+                oeeFormValues["ROI_in_months"] = fixed(validate_NAN(oeeFormValues.ROI_in_days / 30.5), 0);
+                totalMachines["ROI_in_months"] = fixed(validate_NAN(totalMachines.ROI_in_days / 30.5), 0);
+                setValueShow(
+                    "ROI In Months",
+                    "ROI_in_months",
+                    totalMachines.ROI_in_months,
+                    "mo",
+                );
+            }
+
+            function uptROIInYears() {
+                // Years
+                oeeFormValues["ROI_in_years"] = fixed(validate_NAN(oeeFormValues.ROI_in_days / 365), 0);
+                totalMachines["ROI_in_years"] = fixed(validate_NAN(totalMachines.ROI_in_days / 365), 0);
+                // setValueShow(
+                //     "ROI In Years",
+                //     "ROI_in_years",
+                //     totalMachines.ROI_in_years,
+                //     "y"
+                // );
+
+            }
+
+            function uptROIPerc() {
+                let id = "ROI_perc";
+                oeeFormValues["ROI_perc"] = fixed(con_perc(oeeFormValues.total_investment / oeeFormValues.max_output_per_months_per_machine));
+                totalMachines["ROI_perc"] = fixed(con_perc(totalMachines.total_investment / totalMachines.max_output_per_months_per_machine));
+                updateVal(id, "gauge", totalMachines[id], 100, "%", totalMachines[id], "#88b04b", "ROI");
+            }
+
+            // helper functions
+            function rangeAndTextInput(label, secLabel, id, inputOptions) {
+                // input value changes and add event listeners
+
+                let field = `
+                <div class="label">
+                    <div class="flex flex-col" >
+                        <span class="primary-label ">
+                            ${label}
+                        </span>
+                        <span class="secondary-label " >
+                            ${secLabel}
+                        </span>
+                    </div>
+                    <div class="input-unit">
+                        <input class="primary-label" type="number" id="${id}Input" min="${inputOptions.min}" max="${Number.MAX_SAFE_INTEGER}" value="${inputOptions.value}">
+                        <span>Qty</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <input type="range" id="${id}Range" min="${inputOptions.min}" max="${inputOptions.max}" value="${inputOptions.value}">
+                    <div class="range-group">
+                        <div>
+                            ${inputOptions.min}
+                        </div>
+                        <div>
+                            ${inputOptions.max}
+                        </div>
+                    </div>
+                </div>`;
+
+                // document.getElementById(id).innerHTML = field;
+
+                // const range = document.getElementById(id + "Input");
+                // const number = document.getElementById(id + "Range");
+
+                document.querySelectorAll(`#${id}`).forEach((ele) => ele.innerHTML = field);
+
+                // const ranges = document.querySelectorAll(`#${id + "Range"}`);
+                // const numbers = document.querySelectorAll(`#${id + "Input"}`);
+
+                // ranges.forEach((range) => {
+                //     range.addEventListener('input', () => {
+                //         oeeFormValues[id] = range.value;
+                //         numbers.forEach((ele) => ele.value = range.value);
+                //         ranges.forEach((ele) => ele.value = range.value);
+                //         updateData(id);
+                //     });
+                // });
+
+                // numbers.forEach((number) => {
+                //     number.addEventListener('input', () => {
+                //         const val = Math.max(inputOptions.min, Math.min(inputOptions.max, number.value));
+                //         number.value = val;
+                //         numbers.forEach((ele) => ele.value = val);
+                //         ranges.forEach((ele) => ele.value = val);
+                //         oeeFormValues[id] = val;
+                //         updateData(id);
+                //     });
+                // });
+            }
+
+            function setValueShow(label, id, value, unit, target) {
+
+                let field = `
+                    <div class="value-label">${label}</div>
+                    <div class="value-count">
+                        ${target ? `
+                        <span style="color: #007AFF;">${unit === "$" ? unit : ''} ${value} ${unit !== "$" ? unit : ''}</span>
+                        <span style="color: var(--lgt-sec-drk-txt-clr)">/</span>
+                        <span style="color: #96BC46;">${unit === "$" ? unit : ''} ${target} ${unit !== "$" ? unit : ''}</span>` : 
+                        `${unit === "$" ? unit : ''} ${value} ${unit !== "$" ? unit : ''}`}
+                    </div>`;
+
+                document.querySelectorAll(`#${id}`).forEach((ele) => ele.innerHTML = field);
+
+            }
+
+            function updateVal(id, type, val, target, unit, perc, color, label) {
+                let value = validate_NAN(val);
+                let percentage = validate_NAN(Math.min(Math.max(perc, 0), 100));
+                    let gauge = `
+                    <svg width="120" viewBox="0 0 100 100">
+                        <circle
+                            cx="50"
+                            cy="50"
+                            r="40"
+                            stroke="#DCDCDC"
+                            stroke-width="12"
+                            fill="none"
+                        />
+                        <circle
+                            cx="50"
+                            cy="50"
+                            r="40"
+                            stroke="${color}"
+                            stroke-width="12"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-dasharray="282.6"
+                            stroke-dashoffset="${282.6 - Math.min(Math.max(((percentage / 100) * 282.6), 0), 282.6)}"
+                            transform="rotate(-90 50 50)"
+                        />
+                    </svg>`;
+
+                let column = `
+                    <div class="chart-column">
+                        <div class="column-fill" style="height: ${percentage}%; background: ${color || "red"};"></div>
+                    </div>`;
+
+                let bar = `
+                    <div class="chart-bar" style="background: #DCDCDC;" >
+                        <div class="bar-fill" style="width: ${percentage}%; background: ${color || "red"};"></div>
+                    </div>`;
+
+                document.querySelectorAll(`#val_${id}`).forEach((ele) => {
+                    ele.innerHTML = `
+                    <div class="flex flex-col" style="align-items: center;" >
+                        <div class="result-title" style="${type === "column" || type === "bar" ? "font-weight: 400" : "text-align: center;"}" id="label">${label}</div>
+                        <div class="result-value">
+                            ${type === "gauge" ? gauge : ""}
+                            ${type === "column" ? column : ""}
+                            ${type === "bar" ? bar : ""}
+                            <div class="chart-values ${type === "gauge" ? "center-absolute" : "hide"}">
+                                <div class="chart-legends">
+                                    ${false || type ? `<div class="chart-legend hide" style="background: ${color || "red"};"></div>` : ""}
+                                    <div class="">${value + unit}</div> 
+                                </div>
+                            </div>
+                            <div class="chart-values flex ${type === "gauge" ? "hide" : ""}" style="justify-content: space-between; flex-direction: row; margin-top: 8px;">
+                                <div class="chart-legends">
+                                    <span class="" style="font-weight: 700; margin-right: 5px;">${value}</span>
+                                    <span class="" style="color: var(--lgt-sec-drk-txt-clr);">${unit}</span>
+                                </div>
+                                <span style="color: var(--lgt-sec-drk-txt-clr);">${target}</span>
+                            </div>
+                        </div>
+                    </div>`;
+                });
+
+            }
+
+            function updateGauge(id, value, unit, color) {
+                document.getElementById(`val_${id}`).innerHTML = `
+                    ${gauge}
+                    <div class="chart-values">
+                        <div class="chart-legend" style="background: ${color || "red"};"></div>
+                        <div class="text-xl">${value}</div>
+                    </div>
+                `;
+            }
+
+            function fixed(value, pres) {
+                if (!pres) {
+                    return parseInt(value.toFixed(0));
+                }
+                return parseFloat(value.toFixed(pres));
+            }
+
+            function validate_NAN(data) {
+                if (isNaN(data) || !isFinite(data)) {
+                    return 0;
+                } else {
+                    return data;
+                }
+            }
+
+            function con_perc(val, safePerc) {
+                if (safePerc === true) {
+                    return Math.min(Math.max(validate_NAN(val * 100), 0), 100);
+                }
+                return validate_NAN(val * 100);
+            }
+        }
+        function showPage(index) {
+            pages.forEach((page, i) => {
+                page.style.display = i === index ? "flex" : "none";
+            });
+
+            let total_result = `
+            <div class="total-result">
+                <div class="values-card">
+                    <div class="value-card" id="total_investment"></div>
+                    <div class="value-card" id="max_output_per_day_per_machine"></div>
+                    <div class="value-card" id="max_output_per_months_per_machine"></div>
+                    <div class="value-card" id="ROI_in_months"></div>
+                </div>
+            </div>`;
+            let page = '';
+
+            if (index == 0) {
+                page =
+                `<div class="page">
+                    <div class="form-wrapper">
+                        <div class="field" id="total_machines"></div>
+                        <div class="field" id="MHR_rate"></div>
+                        <div class="field" id="avg_machine_cost"></div>
+                        <div class="field" id="working_days_per_week"></div>
+
+                        <div class="field hide">
+                            <button class="firstNext next">Next</button>
+                        </div>
+                    </div>
+                </div>`;
+            } else if (index == 1) {
+                page =
+                    `<div class="page">
+                <div class="form-wrapper">
+                    <div class="field" id="total_shifts"></div>
+                    <div class="field" id="planned_downtime"></div>
+                    <div class="field" id="unplanned_downtime"></div>
+
+                    <div class="field btns hide">
+                        <button class="prev">Previous</button>
+                        <button class="next">Next</button>
+                    </div>
+                </div>
+            </div>`;
+            } else if (index == 2) {
+                page =
+                    `<div class="page">
+                <div class="form-wrapper">
+                    <div class="field" id="std_cycle_time"></div>
+                    <div class="field" id="loading_time"></div>
+                    <div class="field" id="total_production_qty"></div>
+
+                    <div class="field btns hide">
+                        <button class="prev">Previous</button>
+                        <button class="next">Next</button>
+                    </div>
+                </div>
+            </div>`;
+            } else if (index == 3) {
+                page =
+                    `<div class="page hide">
+                <div class="form-wrapper">
+                    <div class="field" id="total_production_qty"></div>
+                    <div class="field" id="total_rejection_qty"></div>
+                    <div class="field" id="net_qty"></div>
+
+                    <div class="field btns hide">
+                        <button class="prev">Previous</button>
+                        <button class="next">Next</button>
+                    </div>
+                </div>
+            </div>`;
+            } else if (index == 4) {
+                page =
+            `<div class="page">
+                <div class="form-wrapper calc-result">
+                    <span class="base-text-clr font-bold text-xl">Your OEE Analysis is ready</span>
+                    <div class="saparator-line"></div>
+                    <div>
+                        <div class="text-lg">OEE at your shopfloor is</div>
+                        <div class="text-3xl font-bold base-text-clr" id="final_result_oee">--%</div>
+                        <div class="text-base">The industry standard is <span id="final_inds_oee">--%</span></div>
+                    </div>
+                    <div>
+                        <div class="text-lg">By increasing your OEE by <span class="base-text-clr font-bold" id="final_diff_oee">15%</span></div>
+                        <div class="text-lg">you can improve your ROI by <span class="base-text-clr font-bold">3 months</span></div>
+                    </div>
+                    <div>
+                        <div class="text-lg">Your Cycle time to Loading time ratio is healthy</div>
+                    </div>
+                    <div class="saparator-line"></div>
+                    <div class="base-text-clr">
+                        <div class="text-lg">To learn on how you can improve your OEE,</div>
+                        <div class="text-lg">download our E-book for just</div>
+                        <div class="text-3xl font-bold">$ 499</div>
+                    </div>
+                    <div class="">
+                        <div class="text-lg base-text-clr">Get OEE report on email</div>
+                        <div class="get-report-form">
+                            <form>
+                                <input placeholder="Write email here...">
+                                <button>Get Report</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+            }
+            document.getElementById("form_oee_page").innerHTML = page;
+            initForm()
+
+            updateProgressBar(index);
+        }
+
+
+        function updateProgressBar(index) {
+            bullets.forEach((bullet, i) => {
+                bullet.classList.toggle("active", i <= index);
+            });
+            flowLines.forEach((line, i) => {
+                line.classList.toggle("active", i < index);
+            });
+        }
+
+        nextBtns.forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                if (currentPage < pages.length - 1) {
+                    currentPage++;
+                    showPage(currentPage);
+                }
+            });
+        });
+
+        prevBtns.forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                if (currentPage > 0) {
+                    currentPage--;
+                    showPage(currentPage);
+                }
+            });
+        });
+
+    }
+
+</script>
+
+
+
+<!-- 
+ROI Months target
+oee Final result msg
+report download format
+ -->
