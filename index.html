@@ -5,7 +5,84 @@ https://codepen.io/ejsado/pen/yLNMPG -->
     @import url(https://fonts.googleapis.com/css?family=Roboto);
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+    input:focus-visible {
+        outline: none;
+    }
+
+    .text-xs {
+        font-size: 0.75rem;
+        /* 12px */
+    }
+
+    .text-sm {
+        font-size: 0.875rem;
+        /* 14px */
+    }
+
+    .text-base {
+        font-size: 1rem;
+        /* 16px */
+    }
+
+    .text-lg {
+        font-size: 1.125rem;
+        /* 18px */
+    }
+
+    .text-xl {
+        font-size: 1.25rem;
+        /* 20px */
+    }
+
+    .text-2xl {
+        font-size: 1.5rem;
+        /* 24px */
+    }
+
+    .text-3xl {
+        font-size: 1.875rem;
+        /* 30px */
+    }
+
+    .text-4xl {
+        font-size: 2.25rem;
+        /* 36px */
+    }
+
+    .text-5xl {
+        font-size: 3rem;
+        /* 48px */
+    }
+
+    .text-6xl {
+        font-size: 3.75rem;
+        /* 60px */
+    }
+
+    .text-7xl {
+        font-size: 4.5rem;
+        /* 72px */
+    }
+
+    .text-8xl {
+        font-size: 6rem;
+        /* 96px */
+    }
+
     :root {
+        --text-xs: 0.75rem;
+        --text-sm: 0.875rem;
+        --text-base: 1rem;
+        --text-lg: 1.125rem;
+        --text-xl: 1.25rem;
+        --text-2xl: 1.5rem;
+        --text-3xl: 1.875em;
+        --text-4xl: 2.25rem;
+        --text-5xl: 3rem;
+        --text-6xl: 3.75rem;
+        --text-7xl: 4.5rem;
+        --text-8xl: 6rem;
+
         --primary-color: #88b04b;
         --white: #fff;
         --black: #000;
@@ -183,6 +260,20 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         background: var(--lgt-bg-clr);
         margin: 20px 0;
         border-radius: 20px;
+        position: relative;
+    }
+
+    .multi-step-wrapper .form-dialog {
+        position: absolute;
+        z-index: 99;
+        height: 100%;
+        width: 100%;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        background: #b8b8b85c;
+        border-radius: 20px;
+        backdrop-filter: blur(2px);
     }
 
     .form__container {
@@ -623,9 +714,60 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         font-size: 16px;
         padding: 15px;
     }
+    .form-dialog-wrapper{
+        display: flex;
+        flex-direction: column;
+        background: var(--lgt-inrbg-clr);
+        border-radius: 20px;
+        padding: 30px;
+        font-size: 18px;
+        gap: 15px;
+        flex: 1;
+        max-width: 400px;
+    }
+    .form-dialog-wrapper .input-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .form-dialog-wrapper .action-group {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        gap: 15px;
+        margin-top: 15px;
+    }
+    .form-dialog-wrapper .action-group button {
+        padding: 12px 20px;
+        border-radius: 5px;
+        border: none;
+        font-size: var(--text-base);
+        color: var(--black);
+        background: var(--gray-200);
+    }
+    button.primary-btn {
+        color: var(--white) !important;
+        background: var(--primary-color) !important;
+    }
+    .form-input input {
+        border: none;
+        flex: 1;
+        width: 100%;
+        border-radius: 10px;
+        font-size: 18px;
+        padding: 16px;
+        background: var(--gray-200);
+        color: var(--lgt-sec-drk-txt-clr);
+    }
+    .form-input .input-title {
+        margin: 10px 0;
+        font-size:  var(--text-lg);
+    }
 </style>
 <div class="section-wrapper">
     <div class="multi-step-wrapper">
+        <div class="form-dialog" id="form_dialog">
+        </div>
         <div class="progress-bar">
             <div class="bullet active" id="showPage_0">
                 Basic Details
@@ -1666,14 +1808,13 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                     <div class="">
                         <div class="text-lg base-text-clr">Get OEE report on email</div>
                         <div class="get-report-form">
-                            <form>
-                                <input placeholder="Write email here...">
-                                <button>Get Report</button>
-                            </form>
+                            <input placeholder="Write email here..." id="final_report_email">
+                            <button id="get_report_btn" onclick="showDialog()">Get Report</button>
                         </div>
                     </div>
                 </div>
             </div>`;
+                
             }
             document.getElementById("form_oee_page").innerHTML = page;
             initForm()
@@ -1710,8 +1851,48 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                 }
             });
         });
-
     }
+
+    function showDialog() {
+
+        // document.getElementById("get_report_btn").addEventListener('click', e => {
+        //     alert("get_report_btn");
+        //     showDialog();
+        // });
+
+        document.getElementById("form_dialog").style.display = "flex";
+        document.getElementById("form_dialog").innerHTML = 
+        `<div class="form-dialog-wrapper">
+            <div class="text-2xl font-bold">Details</div>
+            <div class="input-wrapper">
+                <div class="form-input">
+                    <div class="input-title">Name</div>
+                    <input placeholder="John">
+                </div>
+                <div class="form-input">
+                    <div class="input-title">Company Name</div>
+                    <input placeholder="Atlas Metal">
+                </div>
+                <div class="form-input">
+                    <div class="input-title">Contact</div>
+                    <input placeholder="90897 90876">
+                </div>
+                <div class="form-input">
+                    <div class="input-title">Email</div>
+                    <input placeholder="example@gmail.com" id="dialog_report_email">
+                </div>
+            </div>
+            <div class="action-group">
+                <button id="close_dialog">Cancel</button>
+                <button class="primary-btn">Submit</button>
+            </div>
+        </div>`;
+        document.getElementById("dialog_report_email").value = document.getElementById("final_report_email").value;
+        document.getElementById("close_dialog").addEventListener('click', e => {
+            document.getElementById("form_dialog").style.display = "none";
+        });
+    }
+
 
 </script>
 
