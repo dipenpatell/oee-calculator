@@ -76,6 +76,18 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         padding: 0;
     }
 
+    /* For Chrome, Safari, Edge, Opera */
+    .section-wrapper input[type=number]::-webkit-inner-spin-button,
+    .section-wrapper input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* For Firefox */
+    .section-wrapper input[type=number] {
+        -moz-appearance: textfield;
+    }
+
     .text-xs {
         font-size: 0.75rem;
         /* 12px */
@@ -695,9 +707,10 @@ https://codepen.io/ejsado/pen/yLNMPG -->
     }
 
     /* For mobile phones (480px and below) */
-    @media (max-width: 480px) {
+    /* @media (max-width: 480px) {
         .multi-step-wrapper {
             flex-direction: row;
+            gap: 10px;
         }
         .progress-bar {
             flex-direction: column;
@@ -705,7 +718,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         .form__container {
             flex-direction: column-reverse;
         }
-    }
+    } */
 </style>
 <div class="section-wrapper">
     <div class="multi-step-wrapper">
@@ -816,7 +829,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
             std_cycle_time: 5,
             loading_time: 1,
             total_cycle_time: 0,
-            total_production_qty: 200,
+            total_production_qty: 100,
             total_target_qty: 0,
             act_productive_time: 0,
             performance: 0,
@@ -931,13 +944,15 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                 'MHR $',
                 '(Machine Hour Rate)',
                 'MHR_rate',
-                { min: 1, max: 10000, value: oeeFormValues.MHR_rate }
+                { min: 1, max: 10000, value: oeeFormValues.MHR_rate },
+                "$"
             );
             rangeAndTextInput(
                 'Avg. Machine Cost $',
                 '(Average cost of your machine)',
                 'avg_machine_cost',
-                { min: 1, max: 100000, value: oeeFormValues.avg_machine_cost }
+                { min: 1, max: 100000, value: oeeFormValues.avg_machine_cost },
+                "$"
             );
 
             // rangeAndTextInput(
@@ -959,13 +974,15 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                 'Planned Downtime/shift',
                 '(Break, preventive maintenance, Cleaning, etc.) ',
                 'planned_downtime',
-                { min: 0, max: oeeFormValues.total_shift_time - oeeFormValues.unplanned_downtime, value: oeeFormValues.planned_downtime }
+                { min: 0, max: oeeFormValues.total_shift_time - oeeFormValues.unplanned_downtime, value: oeeFormValues.planned_downtime },
+                "Min"
             );
             rangeAndTextInput(
                 'Unplanned Downtime/shift',
                 '',
                 'unplanned_downtime',
-                { min: 0, max: oeeFormValues.total_shift_time - oeeFormValues.planned_downtime, value: oeeFormValues.unplanned_downtime }
+                { min: 0, max: oeeFormValues.total_shift_time - oeeFormValues.planned_downtime, value: oeeFormValues.unplanned_downtime },
+                "Min"
             );
             updateVal("total_downtime", "bar", oeeFormValues["planned_downtime"] + oeeFormValues["unplanned_downtime"], (oeeFormValues.total_shift_time - (oeeFormValues.unplanned_downtime + oeeFormValues.unplanned_downtime)), "mins", con_perc((oeeFormValues["planned_downtime"] + oeeFormValues["unplanned_downtime"]) / (oeeFormValues.total_shift_time - (oeeFormValues.unplanned_downtime + oeeFormValues.unplanned_downtime))), "#ff8b00", "Total Downtime");
             // updateVal("planned_downtime", "column", oeeFormValues["planned_downtime"], (oeeFormValues.total_shift_time - oeeFormValues.unplanned_downtime), "mins", con_perc(oeeFormValues["planned_downtime"] / (oeeFormValues.total_shift_time - oeeFormValues.unplanned_downtime)), "#ff8b00", "Planned<br>Production Time");
@@ -980,19 +997,22 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                 'Std Cycle Time (Min)',
                 '',
                 'std_cycle_time',
-                { min: 1, max: 1440, value: oeeFormValues.std_cycle_time }
+                { min: 1, max: 500, value: oeeFormValues.std_cycle_time },
+                "Min"
             );
             rangeAndTextInput(
                 'Loading Time (Min)',
                 '',
                 'loading_time',
-                { min: 1, max: 1440, value: oeeFormValues.loading_time }
+                { min: 1, max: 50, value: oeeFormValues.loading_time },
+                "Min"
             );
             rangeAndTextInput(
                 'Total Production Qty',
                 '',
                 'total_production_qty',
-                { min: 1, max: 10000, value: oeeFormValues.total_production_qty }
+                { min: 1, max: 10000, value: oeeFormValues.total_production_qty },
+                "Qty"
             );
             uptTotalTarget();
             uptTotalCycleTime();
@@ -1003,7 +1023,8 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                 'Rejection Qty',
                 '',
                 'total_rejection_qty',
-                { min: 0, max: 10000, value: oeeFormValues.total_rejection_qty }
+                { min: 0, max: 10000, value: oeeFormValues.total_rejection_qty },
+                "Qty"
             );
             updateVal("total_production_qty", "bar", oeeFormValues.total_production_qty, 10000, "pcs", con_perc(oeeFormValues.total_production_qty / 10000), "#96BC46", "Total Production Quantity");
             updateVal("net_qty", "bar", oeeFormValues.total_rejection_qty, oeeFormValues.total_production_qty, "pcs", con_perc(oeeFormValues.total_rejection_qty / oeeFormValues.total_production_qty), "#96BC46", "Good Production Quantity");
@@ -1059,12 +1080,14 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                     uptAvailableTime();
                     uptMaxUnplannedDowntime();
                     uptTotalDowntime();
+                    uptMaxProductionQty();
                 }
                 else if (updatedDataKey === "unplanned_downtime") {
                     uptMachineTotals(updatedDataKey);
                     uptAvailableTime();
                     uptMaxPlannedDowntime();
                     uptTotalDowntime();
+                    uptMaxProductionQty();
                 }
 
                 // Performance
@@ -1150,17 +1173,20 @@ https://codepen.io/ejsado/pen/yLNMPG -->
             }
 
             function uptMaxShiftTime() {
+                console.log("uptMaxShiftTime: ", oeeFormValues.total_shift_time);
                 rangeAndTextInput(
                     'Std Cycle Time (Min)',
                     '',
                     'std_cycle_time',
-                    { min: 1, max: oeeFormValues.total_shift_time, value: oeeFormValues.std_cycle_time }
+                    { min: 1, max: oeeFormValues.total_shift_time, value: oeeFormValues.std_cycle_time },
+                    "Min"
                 );
                 rangeAndTextInput(
                     'Loading Time (Min)',
                     '',
                     'loading_time',
-                    { min: 1, max: oeeFormValues.total_shift_time, value: oeeFormValues.loading_time }
+                    { min: 1, max: oeeFormValues.total_shift_time, value: oeeFormValues.loading_time },
+                    "Min"
                 );
             }
 
@@ -1169,9 +1195,24 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                     'Planned Downtime/shift',
                     '(Break, preventive maintenance, Cleaning, etc.) ',
                     'planned_downtime',
-                    { min: 0, max: oeeFormValues.total_shift_time - oeeFormValues.unplanned_downtime, value: oeeFormValues.planned_downtime }
+                    { min: 0, max: oeeFormValues.total_shift_time - oeeFormValues.unplanned_downtime, value: oeeFormValues.planned_downtime },
+                    "Min"
                 );
                 // updateVal("unplanned_downtime", "column", oeeFormValues["unplanned_downtime"], "mins", con_perc(oeeFormValues["unplanned_downtime"] / (oeeFormValues.total_shift_time - oeeFormValues.planned_downtime)), "#ff8b00", "Unplanned<br>Production Time");
+
+            }
+
+            function uptMaxProductionQty() {
+
+                let maxProduction = parseInt(((oeeFormValues.total_shift_time - oeeFormValues.planned_downtime - oeeFormValues.unplanned_downtime) / oeeFormValues.total_cycle_time).toFixed(0));
+
+                rangeAndTextInput(
+                    'Total Production Qty',
+                    '',
+                    'total_production_qty',
+                    { min: 1, max: maxProduction, value: oeeFormValues.total_production_qty },
+                    "Qty"
+                );
 
             }
 
@@ -1180,7 +1221,8 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                     'Unplanned Downtime/shift ',
                     '',
                     'unplanned_downtime',
-                    { min: 0, max: oeeFormValues.total_shift_time - oeeFormValues.planned_downtime, value: oeeFormValues.unplanned_downtime }
+                    { min: 0, max: oeeFormValues.total_shift_time - oeeFormValues.planned_downtime, value: oeeFormValues.unplanned_downtime },
+                    "Min"
                 );
                 // updateVal("planned_downtime", "column", oeeFormValues["planned_downtime"], "mins", con_perc(oeeFormValues["planned_downtime"] / (oeeFormValues.total_shift_time - oeeFormValues.unplanned_downtime)), "#ff8b00", "Planned<br>Production Time");
 
@@ -1214,6 +1256,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                     "mins"
                 );
 
+                uptMaxProductionQty();
                 uptMaxShiftTime();
                 uptMaxPlannedDowntime();
                 uptMaxUnplannedDowntime();
@@ -1245,6 +1288,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                 oeeFormValues[id] = parseInt(oeeFormValues.std_cycle_time) + parseInt(oeeFormValues.loading_time);
                 uptTotalTarget();
                 uptActProductiveTime();
+                uptMaxProductionQty();
             }
 
             function uptTotalTarget() {
@@ -1479,7 +1523,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
             }
 
             // helper functions
-            function rangeAndTextInput(label, secLabel, id, inputOptions) {
+            function rangeAndTextInput(label, secLabel, id, inputOptions, unit) {
                 // input value changes and add event listeners
 
                 let field = `
@@ -1494,7 +1538,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                     </div>
                     <div class="input-unit">
                         <input class="primary-label" type="number" id="${id}Input" min="${inputOptions.min}" max="${Number.MAX_SAFE_INTEGER}" value="${inputOptions.value}">
-                        <span>Qty</span>
+                        <span>${unit ? unit : ""}</span>
                     </div>
                 </div>
                 <div class="input-group">
