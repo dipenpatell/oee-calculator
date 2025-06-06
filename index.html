@@ -256,7 +256,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
     .form-outer form .page {
         flex-direction: row;
         /* min-width: 400px; */
-        display: flex;
+        display: none;
         transition: display 0.3s ease-in-out;
         gap: 120px;
     }
@@ -276,6 +276,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
     .form-outer form .page .field.btns {
         flex-direction: row;
         justify-content: space-between;
+        margin: 20px 0;
     }
 
     form .page .field .label {
@@ -321,14 +322,23 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         border: none;
         background: var(--lgt-primary-color);
         border-radius: 5px;
-        color: var(--lgt-txt-clr);
+        color: var(--white);
         cursor: pointer;
-        padding: 7px 15px;
+        padding: 10px 15px;
         font-size: var(--text-lg);
         font-weight: 500;
         letter-spacing: 1px;
-        text-transform: uppercase;
         transition: 0.5s ease;
+        display: flex;
+        align-items: center;
+    }
+    form .page .field button.outline {
+        border: 1px solid;
+        background: transparent;
+        color: var(--drk-sec-txt-clr);
+    }
+    form .page .field button svg {
+        margin: 0 5px;
     }
 
     form .page .field button:hover {
@@ -339,7 +349,16 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         margin-left: 3px;
     }
 
-    .progress-bar {
+    button.firstNext.next {
+        margin-left: auto;
+    }
+
+    button.lastPrev.prev {
+        margin-right: auto;
+    }
+    
+
+    .oee-progress-bar {
         display: flex;
         /* flex-direction: column; */
         gap: 3rem;
@@ -351,7 +370,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         margin-bottom: 40px;
     }
 
-    .progress-bar .bullet {
+    .oee-progress-bar .bullet {
         font-size: var(--text-lg);
         cursor: pointer;
         color: var(--lgt-gray-clr);
@@ -361,12 +380,12 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         flex: 1;
     }
 
-    .progress-bar .bullet.active {
+    .oee-progress-bar .bullet.active {
         color: var(--lgt-dark-primary-color);
         border-bottom: 5px solid var(--lgt-dark-primary-color);
     }
 
-    .progress-bar .flow-line {
+    .oee-progress-bar .flow-line {
         display: none;
         height: 44px;
         width: 3px;
@@ -374,7 +393,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         margin: auto;
     }
 
-    .progress-bar .flow-line.active {
+    .oee-progress-bar .flow-line.active {
         background: var(--lgt-dark-primary-color);
         animation: animate 0.3s linear forwards;
     }
@@ -707,24 +726,24 @@ https://codepen.io/ejsado/pen/yLNMPG -->
     }
 
     /* For mobile phones (480px and below) */
-    /* @media (max-width: 480px) {
+    @media (max-width: 768px) {
         .multi-step-wrapper {
             flex-direction: row;
             gap: 10px;
         }
-        .progress-bar {
+        .oee-progress-bar {
             flex-direction: column;
         }
         .form__container {
             flex-direction: column-reverse;
         }
-    } */
+    }
 </style>
 <div class="section-wrapper">
     <div class="multi-step-wrapper">
         <div class="form-dialog" id="form_dialog">
         </div>
-        <div class="progress-bar">
+        <div class="oee-progress-bar">
             <div class="bullet active" id="showPage_0">
                 Basic Details
             </div>
@@ -736,18 +755,174 @@ https://codepen.io/ejsado/pen/yLNMPG -->
             <div class="bullet" id="showPage_2">
                 Performance
             </div>
-            <div class="flow-line"></div>
+            <!-- <div class="flow-line"></div>
             <div class="bullet hide" id="showPage_3">
                 Quality
-            </div>
+            </div> -->
             <div class="flow-line"></div>
-            <div class="bullet" id="showPage_4">
+            <div class="bullet" id="showPage_3">
                 OEE
             </div>
         </div>
         <div class="form__container">
             <div class="form-outer">
                 <form action="#" id="form_oee_page">
+                    <div class="page" id="page_0">
+                        <div class="form-wrapper">
+                            <div class="field" id="total_machines"></div>
+                            <div class="field" id="MHR_rate"></div>
+                            <div class="field" id="avg_machine_cost"></div>
+                            <div class="field" id="working_days_per_week"></div>
+    
+                            <div class="field">
+                                <button class="firstNext next">
+                                    Next
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#fff" height="20px" version="1.1" id="XMLID_287_" viewBox="0 0 24 24" xml:space="preserve">
+                                        <g id="next">
+                                            <g>
+                                                <polygon points="6.8,23.7 5.4,22.3 15.7,12 5.4,1.7 6.8,0.3 18.5,12   "/>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page" id="page_1">
+                        <div class="form-wrapper">
+                            <div class="field" id="total_shifts"></div>
+                            <div class="field" id="planned_downtime"></div>
+                            <div class="field" id="unplanned_downtime"></div>
+        
+                            <div class="field btns">
+                                <button class="prev outline lastPrev">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#9b9b9b" height="20px" version="1.1" id="XMLID_54_" viewBox="0 0 24 24" xml:space="preserve">
+                                        <g id="previous">
+                                            <g>
+                                                <polygon points="17.2,23.7 5.4,12 17.2,0.3 18.5,1.7 8.4,12 18.5,22.3   "/>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    Previous
+                                </button>
+                                <button class="next">
+                                    Next
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#fff" height="20px" version="1.1" id="XMLID_287_" viewBox="0 0 24 24" xml:space="preserve">
+                                        <g id="next">
+                                            <g>
+                                                <polygon points="6.8,23.7 5.4,22.3 15.7,12 5.4,1.7 6.8,0.3 18.5,12   "/>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page" id="page_2">
+                        <div class="form-wrapper">
+                            <div class="field" id="std_cycle_time"></div>
+                            <div class="field" id="loading_time"></div>
+                            <div class="field" id="total_production_qty"></div>
+                            <div class="field" id="total_rejection_qty"></div>
+        
+                            <div class="field btns">
+                                <button class="prev outline">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#9b9b9b" height="20px" version="1.1" id="XMLID_54_" viewBox="0 0 24 24" xml:space="preserve">
+                                        <g id="previous">
+                                            <g>
+                                                <polygon points="17.2,23.7 5.4,12 17.2,0.3 18.5,1.7 8.4,12 18.5,22.3   "/>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    Previous
+                                </button>
+                                <button class="next">
+                                    Next
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#fff" height="20px" version="1.1" id="XMLID_287_" viewBox="0 0 24 24" xml:space="preserve">
+                                        <g id="next">
+                                            <g>
+                                                <polygon points="6.8,23.7 5.4,22.3 15.7,12 5.4,1.7 6.8,0.3 18.5,12   "/>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="page hide" id="page_">
+                        <div class="form-wrapper">
+                            <div class="field" id="total_production_qty"></div>
+                            <div class="field" id="total_rejection_qty"></div>
+                            <div class="field" id="net_qty"></div>
+        
+                            <div class="field btns">
+                                <button class="prev outline">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#9b9b9b" height="20px" version="1.1" id="XMLID_54_" viewBox="0 0 24 24" xml:space="preserve">
+                                        <g id="previous">
+                                            <g>
+                                                <polygon points="17.2,23.7 5.4,12 17.2,0.3 18.5,1.7 8.4,12 18.5,22.3   "/>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    Previous
+                                </button>
+                                <button class="next">
+                                    Next
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#fff" height="20px" version="1.1" id="XMLID_287_" viewBox="0 0 24 24" xml:space="preserve">
+                                        <g id="next">
+                                            <g>
+                                                <polygon points="6.8,23.7 5.4,22.3 15.7,12 5.4,1.7 6.8,0.3 18.5,12   "/>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="page" id="page_3">
+                        <div class="form-wrapper calc-result">
+                            <span class="base-text-clr font-bold text-xl">Your OEE Analysis is ready</span>
+                            <div class="saparator-line"></div>
+                            <div>
+                                <div class="text-lg">OEE at your shopfloor is</div>
+                                <div class="text-3xl font-bold base-text-clr" id="final_result_oee">--%</div>
+                                <div class="text-base">The industry standard is <span id="final_inds_oee">--%</span></div>
+                            </div>
+                            <div>
+                                <div class="text-lg">By increasing your OEE by <span class="base-text-clr font-bold" id="final_diff_oee">15%</span></div>
+                                <div class="text-lg">you can improve your ROI by <span class="base-text-clr font-bold">3 months</span></div>
+                            </div>
+                            <div>
+                                <div class="text-lg">Your Cycle time to Loading time ratio is healthy</div>
+                            </div>
+                            <div class="saparator-line"></div>
+                            <div class="base-text-clr">
+                                <div class="text-lg">To learn on how you can improve your OEE,</div>
+                                <div class="text-lg">download our E-book for just</div>
+                                <div class="text-3xl font-bold">$ 499</div>
+                            </div>
+                            <div class="">
+                                <div class="text-lg base-text-clr">Get OEE report on email</div>
+                                <div class="get-report-form">
+                                    <input placeholder="Write email here..." id="final_report_email">
+                                    <button id="get_report_btn" onclick="showDialog()">Get Report</button>
+                                </div>
+                            </div>
+
+                            <div class="field btns">
+                                <button class="prev outline">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#9b9b9b" height="20px" version="1.1" id="XMLID_54_" viewBox="0 0 24 24" xml:space="preserve">
+                                        <g id="previous">
+                                            <g>
+                                                <polygon points="17.2,23.7 5.4,12 17.2,0.3 18.5,1.7 8.4,12 18.5,22.3   "/>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    Previous
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="result-container">
@@ -792,8 +967,8 @@ https://codepen.io/ejsado/pen/yLNMPG -->
     const pages = document.querySelectorAll(".form-outer .page");
     const nextBtns = document.querySelectorAll(".next");
     const prevBtns = document.querySelectorAll(".prev");
-    const bullets = document.querySelectorAll(".progress-bar .bullet");
-    const flowLines = document.querySelectorAll(".progress-bar .flow-line");
+    const bullets = document.querySelectorAll(".oee-progress-bar .bullet");
+    const flowLines = document.querySelectorAll(".oee-progress-bar .flow-line");
 
     let currentPage = 0;
 
@@ -801,42 +976,94 @@ https://codepen.io/ejsado/pen/yLNMPG -->
 
     function init() {
 
-        [0,1,2,4].forEach((idx) => {
+        [0,1,2,3].forEach((idx) => {
             document.getElementById("showPage_" + idx).addEventListener('click', e => {
                 showPage(idx);
             });
         });
 
         // initial values
+        // let oeeFormValues = {
+        //     // Basic Details
+        //     total_machines: 1,
+        //     MHR_rate: 20,
+        //     total_investment: 0,
+        //     avg_machine_cost: 20000,
+        //     working_days_per_week: 6,
+
+        //     // Availibility 
+        //     total_shift_time: 1440,
+        //     total_shifts: 1,
+        //     planned_downtime: 60,
+        //     unplanned_downtime: 250,
+        //     planned_production_time: 0,
+        //     available_time: 0,
+        //     availibility: 0,
+
+        //     // Performance 
+        //     std_cycle_time: 5,
+        //     loading_time: 1,
+        //     total_cycle_time: 0,
+        //     total_production_qty: 100,
+        //     total_target_qty: 0,
+        //     act_productive_time: 0,
+        //     performance: 0,
+
+        //     // Quality
+        //     total_rejection_qty: 20,
+        //     net_qty: 180,
+        //     quality: 0,
+
+        //     // OEE
+        //     oee: 0,
+        //     inds_std_oee: 85,
+        //     max_output_per_day_per_machine: 0,
+        //     max_output_per_months_per_machine: 0,
+        //     total_output_per_hour_per_machine: 0,
+        //     total_output_per_day_per_machine: 0,
+        //     total_output_per_weeks_per_machine: 0,
+        //     total_output_per_months_per_machine: 0,
+        //     total_output_per_years_per_machine: 0,
+
+        //     invest_autobits_year_per_machine: 650,
+        //     ROI_in_hours: 0,
+        //     ROI_in_days: 0,
+        //     ROI_in_weeks: 0,
+        //     ROI_in_months: 0,
+        //     ROI_in_years: 0,
+        //     ROI_perc: 0,
+
+        // };
+
         let oeeFormValues = {
             // Basic Details
             total_machines: 1,
-            MHR_rate: 20,
+            MHR_rate: 0,
             total_investment: 0,
-            avg_machine_cost: 20000,
+            avg_machine_cost: 0,
             working_days_per_week: 6,
 
             // Availibility 
-            total_shift_time: 1440,
-            total_shifts: 1,
-            planned_downtime: 60,
-            unplanned_downtime: 250,
+            total_shift_time: 0,
+            total_shifts: 3,
+            planned_downtime: 0,
+            unplanned_downtime: 0,
             planned_production_time: 0,
             available_time: 0,
             availibility: 0,
 
             // Performance 
-            std_cycle_time: 5,
-            loading_time: 1,
+            std_cycle_time: 0,
+            loading_time: 0,
             total_cycle_time: 0,
-            total_production_qty: 100,
+            total_production_qty: 0,
             total_target_qty: 0,
             act_productive_time: 0,
             performance: 0,
 
             // Quality
-            total_rejection_qty: 20,
-            net_qty: 180,
+            total_rejection_qty: 0,
+            net_qty: 0,
             quality: 0,
 
             // OEE
@@ -850,7 +1077,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
             total_output_per_months_per_machine: 0,
             total_output_per_years_per_machine: 0,
 
-            invest_autobits_year_per_machine: 650,
+            invest_autobits_year_per_machine: 0,
             ROI_in_hours: 0,
             ROI_in_days: 0,
             ROI_in_weeks: 0,
@@ -862,24 +1089,24 @@ https://codepen.io/ejsado/pen/yLNMPG -->
 
         let totalMachines = {
             // Basic Details	            
-            avg_machine_cost: 20000,//
+            avg_machine_cost: 0,//
 
             // Availibility 
-            total_shift_time: 1440,//
-            planned_downtime: 60,//
-            unplanned_downtime: 250,//
+            total_shift_time: 0,//
+            planned_downtime: 0,//
+            unplanned_downtime: 0,//
             planned_production_time: 0,//
             available_time: 0,//
             availibility: 0,//
 
             // Performance 
-            total_production_qty: 200,//
+            total_production_qty: 0,//
             total_target_qty: 0,//
             performance: 0,//
 
             // Quality
-            total_rejection_qty: 20,//
-            net_qty: 180,//
+            total_rejection_qty: 0,//
+            net_qty: 0,//
             quality: 0,
 
             // OEE
@@ -892,7 +1119,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
             total_output_per_months_per_machine: 0,
             total_output_per_years_per_machine: 0,
 
-            invest_autobits_year_per_machine: 650,//
+            invest_autobits_year_per_machine: 0,//
             ROI_in_hours: 0,
             ROI_in_days: 0,
             ROI_in_weeks: 0,
@@ -902,7 +1129,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
         };
 
         showPage(currentPage);
-        // initForm();
+        initForm();
 
         function initForm() {
 
@@ -944,14 +1171,14 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                 'MHR $',
                 '(Machine Hour Rate)',
                 'MHR_rate',
-                { min: 1, max: 10000, value: oeeFormValues.MHR_rate },
+                { min: 1, max: 100, value: oeeFormValues.MHR_rate },
                 "$"
             );
             rangeAndTextInput(
                 'Avg. Machine Cost $',
                 '(Average cost of your machine)',
                 'avg_machine_cost',
-                { min: 1, max: 100000, value: oeeFormValues.avg_machine_cost },
+                { min: 1, max: 150000, value: oeeFormValues.avg_machine_cost },
                 "$"
             );
 
@@ -970,19 +1197,24 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                 'total_shifts',
                 { min: 1, max: 3, value: oeeFormValues.total_shifts }
             );
+            oeeFormValues["total_shift_time"] = 1440 / oeeFormValues.total_shifts;
+            oeeFormValues["planned_downtime"] = oeeFormValues.total_shift_time;
+            updateData("planned_downtime");
             rangeAndTextInput(
                 'Planned Downtime/shift',
                 '(Break, preventive maintenance, Cleaning, etc.) ',
                 'planned_downtime',
                 { min: 0, max: oeeFormValues.total_shift_time - oeeFormValues.unplanned_downtime, value: oeeFormValues.planned_downtime },
-                "Min"
+                "Min",
+                true
             );
             rangeAndTextInput(
                 'Unplanned Downtime/shift',
                 '',
                 'unplanned_downtime',
                 { min: 0, max: oeeFormValues.total_shift_time - oeeFormValues.planned_downtime, value: oeeFormValues.unplanned_downtime },
-                "Min"
+                "Min",
+                true
             );
             updateVal("total_downtime", "bar", oeeFormValues["planned_downtime"] + oeeFormValues["unplanned_downtime"], (oeeFormValues.total_shift_time - (oeeFormValues.unplanned_downtime + oeeFormValues.unplanned_downtime)), "mins", con_perc((oeeFormValues["planned_downtime"] + oeeFormValues["unplanned_downtime"]) / (oeeFormValues.total_shift_time - (oeeFormValues.unplanned_downtime + oeeFormValues.unplanned_downtime))), "#ff8b00", "Total Downtime");
             // updateVal("planned_downtime", "column", oeeFormValues["planned_downtime"], (oeeFormValues.total_shift_time - oeeFormValues.unplanned_downtime), "mins", con_perc(oeeFormValues["planned_downtime"] / (oeeFormValues.total_shift_time - oeeFormValues.unplanned_downtime)), "#ff8b00", "Planned<br>Production Time");
@@ -1012,7 +1244,8 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                 '',
                 'total_production_qty',
                 { min: 1, max: 10000, value: oeeFormValues.total_production_qty },
-                "Qty"
+                "Qty",
+                true
             );
             uptTotalTarget();
             uptTotalCycleTime();
@@ -1023,8 +1256,9 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                 'Rejection Qty',
                 '',
                 'total_rejection_qty',
-                { min: 0, max: 10000, value: oeeFormValues.total_rejection_qty },
-                "Qty"
+                { min: 0, max: oeeFormValues.total_production_qty, value: oeeFormValues.total_rejection_qty },
+                "Qty",
+                true
             );
             updateVal("total_production_qty", "bar", oeeFormValues.total_production_qty, 10000, "pcs", con_perc(oeeFormValues.total_production_qty / 10000), "#96BC46", "Total Production Quantity");
             updateVal("net_qty", "bar", oeeFormValues.total_rejection_qty, oeeFormValues.total_production_qty, "pcs", con_perc(oeeFormValues.total_rejection_qty / oeeFormValues.total_production_qty), "#96BC46", "Good Production Quantity");
@@ -1102,6 +1336,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                 else if (updatedDataKey === "total_production_qty") {
                     uptMachineTotals(updatedDataKey);
 
+                    uptMaxRejection();
                     updateVal("total_production_qty", "bar", totalMachines.total_production_qty, 10000, "pcs", con_perc(totalMachines.total_production_qty/ 10000), "#96BC46", "Total Production Quantity");
                     uptActProductiveTime();
                     uptNetQty();
@@ -1190,13 +1425,24 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                 );
             }
 
+            function uptMaxRejection() {
+                rangeAndTextInput(
+                'Rejection Qty',
+                '',
+                'total_rejection_qty',
+                { min: 0, max: oeeFormValues.total_production_qty, value: oeeFormValues.total_rejection_qty },
+                "Qty",
+                true
+            );
+            }
             function uptMaxPlannedDowntime() {
                 rangeAndTextInput(
                     'Planned Downtime/shift',
                     '(Break, preventive maintenance, Cleaning, etc.) ',
                     'planned_downtime',
                     { min: 0, max: oeeFormValues.total_shift_time - oeeFormValues.unplanned_downtime, value: oeeFormValues.planned_downtime },
-                    "Min"
+                    "Min",
+                    true
                 );
                 // updateVal("unplanned_downtime", "column", oeeFormValues["unplanned_downtime"], "mins", con_perc(oeeFormValues["unplanned_downtime"] / (oeeFormValues.total_shift_time - oeeFormValues.planned_downtime)), "#ff8b00", "Unplanned<br>Production Time");
 
@@ -1205,13 +1451,15 @@ https://codepen.io/ejsado/pen/yLNMPG -->
             function uptMaxProductionQty() {
 
                 let maxProduction = parseInt(((oeeFormValues.total_shift_time - oeeFormValues.planned_downtime - oeeFormValues.unplanned_downtime) / oeeFormValues.total_cycle_time).toFixed(0));
+                maxProduction = isNaN(maxProduction) ? 0 : maxProduction;
 
                 rangeAndTextInput(
                     'Total Production Qty',
                     '',
                     'total_production_qty',
-                    { min: 1, max: maxProduction, value: oeeFormValues.total_production_qty },
-                    "Qty"
+                    { min: 0, max: maxProduction, value: oeeFormValues.total_production_qty },
+                    "Qty",
+                    true
                 );
 
             }
@@ -1222,7 +1470,8 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                     '',
                     'unplanned_downtime',
                     { min: 0, max: oeeFormValues.total_shift_time - oeeFormValues.planned_downtime, value: oeeFormValues.unplanned_downtime },
-                    "Min"
+                    "Min",
+                    true
                 );
                 // updateVal("planned_downtime", "column", oeeFormValues["planned_downtime"], "mins", con_perc(oeeFormValues["planned_downtime"] / (oeeFormValues.total_shift_time - oeeFormValues.unplanned_downtime)), "#ff8b00", "Planned<br>Production Time");
 
@@ -1278,6 +1527,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                 let id = "availibility";
                 oeeFormValues[id] = fixed(con_perc(oeeFormValues.available_time / oeeFormValues.planned_production_time), 1);
                 totalMachines[id] = fixed(con_perc(totalMachines.available_time / totalMachines.planned_production_time), 1);
+                // console.log("availibility: ", totalMachines.available_time, totalMachines.planned_production_time);
                 updateVal(id, "gauge", totalMachines[id], 100, "%", totalMachines[id], "#96BC46", "AVAILIBILITY");
                 // updateGauge(id, oeeFormValues[id], "mins", "#256eff");
                 uptOEE();
@@ -1304,7 +1554,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                 let id = "act_productive_time";
                 oeeFormValues[id] = (oeeFormValues.total_cycle_time * oeeFormValues.total_production_qty);
                 uptMachineTotals(id);
-                updateVal(id, "bar", totalMachines[id], 100, "mins", con_perc((oeeFormValues.total_cycle_time * oeeFormValues.total_production_qty) / (oeeFormValues.total_cycle_time * oeeFormValues.total_target_qty), true), "#ff8b00", "Actual Production Time");
+                updateVal(id, "bar", totalMachines[id], totalMachines.total_cycle_time * totalMachines.total_target_qty, "mins", con_perc((oeeFormValues.total_cycle_time * oeeFormValues.total_production_qty) / (oeeFormValues.total_cycle_time * oeeFormValues.total_target_qty), true), "#ff8b00", "Actual Production Time");
             }
 
             function uptPerformance() {
@@ -1343,6 +1593,8 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                     document.getElementById("final_inds_oee").innerHTML = parseInt(oeeFormValues.inds_std_oee) + "%";
                     document.getElementById("final_diff_oee").innerHTML = parseInt(oeeFormValues.inds_std_oee) - parseInt(totalMachines[id]) + "%";
                 }
+
+                uptTotalOutputPerDayPerMachine();
             }
 
             function uptTotalOutputPerHourPerMachine() {
@@ -1361,7 +1613,8 @@ https://codepen.io/ejsado/pen/yLNMPG -->
 
             function uptMaxOutputPerDayPerMachine() {
                 oeeFormValues["max_output_per_day_per_machine"] = fixed(validate_NAN(oeeFormValues.MHR_rate * 24), 0);
-                totalMachines["max_output_per_day_per_machine"] = fixed(validate_NAN(oeeFormValues.MHR_rate * 24), 0);
+                // totalMachines["max_output_per_day_per_machine"] = fixed(validate_NAN(oeeFormValues.MHR_rate * 24), 0);
+                uptMachineTotals("max_output_per_day_per_machine");
 
                 setValueShow(
                     "Daily Max Output",
@@ -1395,9 +1648,9 @@ https://codepen.io/ejsado/pen/yLNMPG -->
 
             function uptTotalOutputPerDayPerMachine() {
                 // Day
-                oeeFormValues["total_output_per_day_per_machine"] = fixed(validate_NAN(oeeFormValues.MHR_rate * (oeeFormValues.planned_production_time / 60)), 0);
-                totalMachines["total_output_per_day_per_machine"] = fixed(validate_NAN(oeeFormValues.MHR_rate * (totalMachines.planned_production_time / 60)), 0);
-
+                oeeFormValues["total_output_per_day_per_machine"] = totalMachines.oee > 0 ? fixed(validate_NAN(oeeFormValues.MHR_rate * (oeeFormValues.planned_production_time / 60)), 0) : 0;
+                totalMachines["total_output_per_day_per_machine"] = totalMachines.oee > 0 ? fixed(validate_NAN(oeeFormValues.MHR_rate * (totalMachines.planned_production_time / 60)), 0) : 0;
+                // console.log("total_output_per_day_per_machine: ", oeeFormValues.MHR_rate, totalMachines.planned_production_time / 60);
                 // setValueShow(
                 //     "output per Day $",
                 //     "total_output_per_day_per_machine",
@@ -1523,7 +1776,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
             }
 
             // helper functions
-            function rangeAndTextInput(label, secLabel, id, inputOptions, unit) {
+            function rangeAndTextInput(label, secLabel, id, inputOptions, unit, maxCap) {
                 // input value changes and add event listeners
 
                 let field = `
@@ -1537,7 +1790,7 @@ https://codepen.io/ejsado/pen/yLNMPG -->
                         </span>
                     </div>
                     <div class="input-unit">
-                        <input class="primary-label" type="number" id="${id}Input" min="${inputOptions.min}" max="${Number.MAX_SAFE_INTEGER}" value="${inputOptions.value}">
+                        <input class="primary-label" type="number" id="${id}Input" min="${inputOptions.min}" max="${maxCap && maxCap === true ? inputOptions.max : Number.MAX_SAFE_INTEGER}" value="${inputOptions.value}">
                         <span>${unit ? unit : ""}</span>
                     </div>
                 </div>
@@ -1697,6 +1950,8 @@ https://codepen.io/ejsado/pen/yLNMPG -->
             }
         }
         function showPage(index) {
+            currentPage = index;
+            console.log("index: ", index, currentPage);
             pages.forEach((page, i) => {
                 page.style.display = i === index ? "flex" : "none";
             });
@@ -1712,99 +1967,105 @@ https://codepen.io/ejsado/pen/yLNMPG -->
             </div>`;
             let page = '';
 
-            if (index == 0) {
-                page =
-                `<div class="page">
-                    <div class="form-wrapper">
-                        <div class="field" id="total_machines"></div>
-                        <div class="field" id="MHR_rate"></div>
-                        <div class="field" id="avg_machine_cost"></div>
-                        <div class="field" id="working_days_per_week"></div>
+            // if (index == 0) {
+            //     page =
+            //     `<div class="page">
+            //         <div class="form-wrapper">
+            //             <div class="field" id="total_machines"></div>
+            //             <div class="field" id="MHR_rate"></div>
+            //             <div class="field" id="avg_machine_cost"></div>
+            //             <div class="field" id="working_days_per_week"></div>
 
-                        <div class="field hide">
-                            <button class="firstNext next">Next</button>
-                        </div>
-                    </div>
-                </div>`;
-            } else if (index == 1) {
-                page =
-                    `<div class="page">
-                <div class="form-wrapper">
-                    <div class="field" id="total_shifts"></div>
-                    <div class="field" id="planned_downtime"></div>
-                    <div class="field" id="unplanned_downtime"></div>
+            //             <div class="field hide">
+            //                 <button class="firstNext next">Next</button>
+            //             </div>
+            //         </div>
+            //     </div>`;
+            // } else if (index == 1) {
+            //     page =
+            //         `<div class="page">
+            //     <div class="form-wrapper">
+            //         <div class="field" id="total_shifts"></div>
+            //         <div class="field" id="planned_downtime"></div>
+            //         <div class="field" id="unplanned_downtime"></div>
 
-                    <div class="field btns hide">
-                        <button class="prev">Previous</button>
-                        <button class="next">Next</button>
-                    </div>
-                </div>
-            </div>`;
-            } else if (index == 2) {
-                page =
-                    `<div class="page">
-                <div class="form-wrapper">
-                    <div class="field" id="std_cycle_time"></div>
-                    <div class="field" id="loading_time"></div>
-                    <div class="field" id="total_production_qty"></div>
+            //         <div class="field btns hide">
+            //             <button class="prev outline">Previous</button>
+            //             <button class="next">Next</button>
+            //         </div>
+            //     </div>
+            // </div>`;
+            // } else if (index == 2) {
+            //     page =
+            //         `<div class="page">
+            //     <div class="form-wrapper">
+            //         <div class="field" id="std_cycle_time"></div>
+            //         <div class="field" id="loading_time"></div>
+            //         <div class="field" id="total_production_qty"></div>
+            //         <div class="field" id="total_rejection_qty"></div>
 
-                    <div class="field btns hide">
-                        <button class="prev">Previous</button>
-                        <button class="next">Next</button>
-                    </div>
-                </div>
-            </div>`;
-            } else if (index == 3) {
-                page =
-                    `<div class="page hide">
-                <div class="form-wrapper">
-                    <div class="field" id="total_production_qty"></div>
-                    <div class="field" id="total_rejection_qty"></div>
-                    <div class="field" id="net_qty"></div>
+            //         <div class="field btns hide">
+            //             <button class="prev outline">Previous</button>
+            //             <button class="next">Next</button>
+            //         </div>
+            //     </div>
+            // </div>`;
+            // } else if (index == 3) {
+            //     page =
+            //         `<div class="page hide">
+            //     <div class="form-wrapper">
+            //         <div class="field" id="total_production_qty"></div>
+            //         <div class="field" id="total_rejection_qty"></div>
+            //         <div class="field" id="net_qty"></div>
 
-                    <div class="field btns hide">
-                        <button class="prev">Previous</button>
-                        <button class="next">Next</button>
-                    </div>
-                </div>
-            </div>`;
-            } else if (index == 4) {
-                page =
-            `<div class="page">
-                <div class="form-wrapper calc-result">
-                    <span class="base-text-clr font-bold text-xl">Your OEE Analysis is ready</span>
-                    <div class="saparator-line"></div>
-                    <div>
-                        <div class="text-lg">OEE at your shopfloor is</div>
-                        <div class="text-3xl font-bold base-text-clr" id="final_result_oee">--%</div>
-                        <div class="text-base">The industry standard is <span id="final_inds_oee">--%</span></div>
-                    </div>
-                    <div>
-                        <div class="text-lg">By increasing your OEE by <span class="base-text-clr font-bold" id="final_diff_oee">15%</span></div>
-                        <div class="text-lg">you can improve your ROI by <span class="base-text-clr font-bold">3 months</span></div>
-                    </div>
-                    <div>
-                        <div class="text-lg">Your Cycle time to Loading time ratio is healthy</div>
-                    </div>
-                    <div class="saparator-line"></div>
-                    <div class="base-text-clr">
-                        <div class="text-lg">To learn on how you can improve your OEE,</div>
-                        <div class="text-lg">download our E-book for just</div>
-                        <div class="text-3xl font-bold">$ 499</div>
-                    </div>
-                    <div class="">
-                        <div class="text-lg base-text-clr">Get OEE report on email</div>
-                        <div class="get-report-form">
-                            <input placeholder="Write email here..." id="final_report_email">
-                            <button id="get_report_btn" onclick="showDialog()">Get Report</button>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
+            //         <div class="field btns hide">
+            //             <button class="prev outline">Previous</button>
+            //             <button class="next">Next</button>
+            //         </div>
+            //     </div>
+            // </div>`;
+            // } else if (index == 4) {
+            //     page =
+            // `<div class="page">
+            //     <div class="form-wrapper calc-result">
+            //         <span class="base-text-clr font-bold text-xl">Your OEE Analysis is ready</span>
+            //         <div class="saparator-line"></div>
+            //         <div>
+            //             <div class="text-lg">OEE at your shopfloor is</div>
+            //             <div class="text-3xl font-bold base-text-clr" id="final_result_oee">--%</div>
+            //             <div class="text-base">The industry standard is <span id="final_inds_oee">--%</span></div>
+            //         </div>
+            //         <div>
+            //             <div class="text-lg">By increasing your OEE by <span class="base-text-clr font-bold" id="final_diff_oee">15%</span></div>
+            //             <div class="text-lg">you can improve your ROI by <span class="base-text-clr font-bold">3 months</span></div>
+            //         </div>
+            //         <div>
+            //             <div class="text-lg">Your Cycle time to Loading time ratio is healthy</div>
+            //         </div>
+            //         <div class="saparator-line"></div>
+            //         <div class="base-text-clr">
+            //             <div class="text-lg">To learn on how you can improve your OEE,</div>
+            //             <div class="text-lg">download our E-book for just</div>
+            //             <div class="text-3xl font-bold">$ 499</div>
+            //         </div>
+            //         <div class="">
+            //             <div class="text-lg base-text-clr">Get OEE report on email</div>
+            //             <div class="get-report-form">
+            //                 <input placeholder="Write email here..." id="final_report_email">
+            //                 <button id="get_report_btn" onclick="showDialog()">Get Report</button>
+            //             </div>
+            //         </div>
+            //     </div>
+            // </div>`;
                 
-            }
-            document.getElementById("form_oee_page").innerHTML = page;
-            initForm()
+            // }
+            // document.getElementById("form_oee_page").innerHTML = page;
+            document.querySelectorAll("#form_oee_page .page").forEach(ele => {
+                ele.style.display = "none";
+            })
+            document.getElementById("page_" + index).style.display = "flex";
+
+            // initForm()
 
             updateProgressBar(index);
         }
@@ -1823,8 +2084,8 @@ https://codepen.io/ejsado/pen/yLNMPG -->
             btn.addEventListener("click", (e) => {
                 e.preventDefault();
                 if (currentPage < pages.length - 1) {
-                    currentPage++;
-                    showPage(currentPage);
+                    // currentPage++;
+                    showPage(currentPage + 1);
                 }
             });
         });
@@ -1833,8 +2094,9 @@ https://codepen.io/ejsado/pen/yLNMPG -->
             btn.addEventListener("click", (e) => {
                 e.preventDefault();
                 if (currentPage > 0) {
-                    currentPage--;
-                    showPage(currentPage);
+                    showPage(currentPage - 1);
+                    // currentPage--;
+                    // console.log(currentPage);
                 }
             });
         });
